@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ============================
+    CONFIGURACIÓN GENERAL
+   ============================ */
+
+:root {
+    --color-fondo: #93abcc;
+    --color-texto: #000000;
+    --color-texto-titulo: #d2bd9f;
+    --color-fondo-titulo: #000000;
+    --borde: 2px solid #000000;
+    --sombra: 5px 5px 0 #000000;
+    --max-ancho: 1500px;
+}
+
+   body {
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    font-family: 'Roboto';
+    font-weight: bold;
+    margin: 0; padding: 0;
+}
+
+/* Configuración de la ventana interior */
+#marco {
+    background-image: url("../assets/img/principal/tablero.jpg");
+    border: var(--borde);
+    box-shadow: var(--sombra);
+    max-width: var(--max-ancho);
+    margin: 40px auto; padding: 30px;
+}
+
+#cursor {
+    position:absolute;
+    top:550px;
+    left:950px;
+}
+
+#cursor img {
+    width: 25px; height: 25px;
+    object-fit: contain;
+}
+
+/* ============================
+    CONFIGURACIÓN HEADER
+   ============================ */
+
+header img {
+    object-fit: cover;
+    float: left;
+    width: 80px; height: 80px;
+    margin-top: -15px;
+    transition: transform 1s ease;
+}
+
+header img:hover {
+    transform: rotate(180deg);
+}
+
+header h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+header h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 5px 0 20px 0;
+
+}
+
+#titulo-principal h1{
+    color: var(--color-texto-titulo);
+    background-color: var(--color-fondo-titulo);
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0; padding: 20px;
+}
+
+/* ============================
+    CONFIGURACIÓN MAIN (TABLERO)
+   ============================ */
+
+.tablero {
+    max-height: 500px;
+    border: var(--borde);
+    
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+/* Tamaño de las notas */
+.nota {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.5s ease;
+
+}
+
+.nota:hover {
+    transform: scale(1.05);
+
+}
+/* Imágenes de las notas */
+.nota img {
+    border: var(--borde);
+    box-shadow: var(--sombra);
+    width: 100%; max-width: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;    
+}
+
+/* Descripciones de las notas */
+.nota figcaption {
+    color: var(--color-texto);
+    text-align: center;
+    padding-top: 5px;
+}
+
+/* Ubicación de cada nota */
+#sobre-mi   { grid-column: 2; grid-row: 2; }
+#estudios   { grid-column: 4; grid-row: 2; }
+#intereses  { grid-column: 6; grid-row: 2; }
+#proyectos  { grid-column: 2; grid-row: 3; }
+#contacto   { grid-column: 6; grid-row: 3; }
+
+/* ============================
+    CONFIGURACIÓN FOOTER
+   ============================ */
+
+footer {
+    text-align: right;
+}
