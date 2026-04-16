@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ============================
+    CONFIGURACIÓN PERSONAL
+   ============================ */
+/* Clase personalizada dinámica para la función moverCursor() y detectarColision() */
+.nota.hover-cursor {
+    transform: scale(1.05);
+}
+
+.logo.hover-cursor {
+    transform: rotate(180deg);
+}
+
+/* ============================
     CONFIGURACIÓN GENERAL
    ============================ */
 
@@ -14,7 +26,7 @@
     --max-ancho: 1500px;
 }
 
-   body {
+body {
     color: var(--color-texto);
     background-color: var(--color-fondo);
     font-family: 'Roboto';
@@ -105,13 +117,14 @@ header h2 {
     transform: scale(1.05);
 
 }
+
 /* Imágenes de las notas */
 .nota img {
     border: var(--borde);
     box-shadow: var(--sombra);
     width: 100%; max-width: 150px;
     aspect-ratio: 1/1;
-    object-fit: cover;    
+    object-fit: cover;
 }
 
 /* Descripciones de las notas */

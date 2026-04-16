@@ -14,7 +14,7 @@
     --max-ancho: 1250px;
 }
 
-   body {
+body {
     color: var(--color-texto);
     background-color: var(--color-fondo);
     font-family: 'Roboto';
@@ -39,7 +39,7 @@ p, li, td, th {
 /* ============================
     CONFIGURACIÓN MAIN
    ============================ */
-   
+
 main {
     background-color: var(--color-papel);
     border: var(--borde);
@@ -102,7 +102,7 @@ td img {
     box-shadow: var(--sombra);
     width: 100%; max-width: 150px;
     aspect-ratio: 1/1;
-    object-fit: cover; 
+    object-fit: cover;
     display: block;
     margin: auto;
 
