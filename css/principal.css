@@ -25,7 +25,7 @@
     --sombra: 5px 5px 0 #000000;
     --max-ancho: 1500px;
 }
-
+ 
 body {
     color: var(--color-texto);
     background-color: var(--color-fondo);
