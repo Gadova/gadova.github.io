@@ -104,7 +104,7 @@ function detectarColision(){
             logo.classList.add("hover-cursor");
         }
     }
-
+ 
     // Detectar colisión con las notas
     notas.forEach(nota => {
         let rect = nota.getBoundingClientRect();
