@@ -23,9 +23,19 @@ function cambiarColor(micolor) {
 }
 */
 
+// Variables para calcular nuevos top y left
 let newTop; let newLeft;
-let notaSeleccionada = null;
 
+// Cantidad de píxeles que se desplaza el cursor
+let desplazamiento = 15;
+
+// Variable que indica qué nota está bajo el cursor 
+let notaSeleccionada;
+
+// Velocidad inicial
+let velocidadX = 3; let velocidadY = 3;
+
+// Función para mover el cursor
 function moverCursor(event){
 
     // Cursor y su rectángulo
@@ -40,9 +50,6 @@ function moverCursor(event){
     if (!cursor.style.top) cursor.style.top = "550px";
     if (!cursor.style.left) cursor.style.left = "950px";
 
-    // Cantidad de píxeles que se desplaza el cursor
-    let desplazamiento = 15;
-
     console.log(cursor.style.left, cursor.style.top);
     console.log(cursorRect.left, cursorRect.top);
 
@@ -50,28 +57,28 @@ function moverCursor(event){
     switch(event.key){
         case "ArrowLeft":
             newLeft = parseInt(cursor.style.left) - desplazamiento;
-            if(newLeft > marcoRect.left){
+            if(newLeft >= marcoRect.left){
                 cursor.style.left = newLeft + "px";
             }
             break;
 
         case "ArrowUp":
             newTop = parseInt(cursor.style.top)  - desplazamiento;
-            if(newTop > marcoRect.top){
+            if(newTop >= marcoRect.top){
                 cursor.style.top = newTop + "px";
             }
             break;
 
         case "ArrowRight":
             newLeft = parseInt(cursor.style.left)  + desplazamiento;
-            if(newLeft < marcoRect.right){
+            if(newLeft <= marcoRect.right){
                 cursor.style.left = newLeft + "px";
             }     
             break;
 
         case "ArrowDown":
             newTop = parseInt(cursor.style.top) + desplazamiento;
-            if(newTop < marcoRect.bottom){
+            if(newTop <= marcoRect.bottom){
                 cursor.style.top = newTop + "px";
             }
             break;
@@ -84,15 +91,56 @@ function moverCursor(event){
     }
 
     // Se activa la funcion cada vez que se mueve el cursor para detectar si se solapa con algún otro elemento
-    detectarColision(cursorRect);
+    detectarColision();
 }
 
+// Función que permite a la pelota moverse automáticamente
+function moverPelota() {
 
-function detectarColision(cursorRect){
+    // Tablero y su rectángulo
+    let pelota = document.getElementById("pelota");
+    let pelotaRect = pelota.getBoundingClientRect();
+    
+    // Pelota y su rectángulo
+    let tablero = document.getElementById("tablero");
+    let tableroRect = tablero.getBoundingClientRect();
 
-    let notas = document.querySelectorAll(".nota");
+    // Posición inicial de la pelota
+    if (!pelota.style.top) pelota.style.top = "600px";
+    if (!pelota.style.left) pelota.style.left = "400px";
+    console.log(pelota.style.top, pelota.style.left)
+
+    // Rebote horizontal
+    if (pelotaRect.left <= tableroRect.left || pelotaRect.right >= tableroRect.right) {
+        velocidadX *= -1;
+    }
+
+    // Rebote vertical
+    if (pelotaRect.top <= tableroRect.top || pelotaRect.bottom >= tableroRect.bottom) {
+        velocidadY *= -1;
+    }
+
+    // Mover pelota
+    pelota.style.left = (pelotaRect.left + velocidadX) + "px";
+    pelota.style.top = (pelotaRect.top + velocidadY) + "px";
+
+    //detectarGolpePelota(); POR HACER
+
+    requestAnimationFrame(moverPelota);
+}
+
+// Función que detecta colisiones/solapamientos entre el cursor y otros elementos
+function detectarColision(){
+    
+    // Cursor y su rectángulo
+    let cursor = document.getElementById("cursor");
+    let cursorRect = cursor.getBoundingClientRect();
+
+    // Logo y notas
     let logo = document.querySelector(".logo");
+    let notas = document.querySelectorAll(".nota");
 
+    // No hay ninguna nota seleccionada
     notaSeleccionada = null;
 
     // Detectar colisión con el logo
@@ -117,17 +165,21 @@ function detectarColision(cursorRect){
     notas.forEach(nota => {
         let rectNota = nota.getBoundingClientRect();
 
-        let colision =
+        let colisionNota =
             cursorRect.left < rectNota.right &&
             cursorRect.right > rectNota.left &&
             cursorRect.top < rectNota.bottom &&
             cursorRect.bottom > rectNota.top;
 
-        if (colision){
+        if (colisionNota){
             nota.classList.add("hover-cursor");
+            // Marcar la nota que está debajo del cursor como seleccionada
             notaSeleccionada = nota;
         } else {
             nota.classList.remove("hover-cursor");
         }
     });
 }
+
+// Activar/Invocar la función
+moverPelota();

@@ -46,8 +46,7 @@ body {
 
 #cursor {
     position:absolute;
-    top:550px;
-    left:950px;
+    top:550px; left:950px;
     /* Permite movimiento suave */
     transition: top 0.05s linear, left 0.05s linear;
 }
@@ -56,6 +55,14 @@ body {
     width: 30px; height: 30px;
     object-fit: contain;
 }
+
+#pelota {
+    position: absolute;
+    background-color: #d10000;
+    width: 15px; height: 15px;
+    border-radius: 100%;
+}
+
 
 /* ============================
     CONFIGURACIÓN HEADER
@@ -113,7 +120,6 @@ header h2 {
     text-decoration: none;
     display: block;
     transition: transform 0.5s ease;
-
 }
 
 .nota:hover {
