@@ -3,7 +3,8 @@
 /* ============================
     CONFIGURACIÓN PERSONAL
    ============================ */
-/* Clase personalizada dinámica para la función moverCursor() y detectarColision() */
+
+/* Clases personalizadas dinámicas para la función moverCursor() y detectarColision() */
 .nota.hover-cursor {
     transform: scale(1.05);
 }
@@ -47,10 +48,12 @@ body {
     position:absolute;
     top:550px;
     left:950px;
+    /* Permite movimiento suave */
+    transition: top 0.05s linear, left 0.05s linear;
 }
 
 #cursor img {
-    width: 25px; height: 25px;
+    width: 30px; height: 30px;
     object-fit: contain;
 }
 
@@ -96,7 +99,7 @@ header h2 {
     CONFIGURACIÓN MAIN (TABLERO)
    ============================ */
 
-.tablero {
+#tablero {
     max-height: 500px;
     border: var(--borde);
     

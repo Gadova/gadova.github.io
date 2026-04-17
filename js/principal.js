@@ -23,44 +23,57 @@ function cambiarColor(micolor) {
 }
 */
 
-/*
-moverCursor()
-   └── mueve el cursor
-   └── llama a detectarColision()
-          └── detecta si toca una nota
-          └── activa hover
-
-*/
 let newTop; let newLeft;
 let notaSeleccionada = null;
 
 function moverCursor(event){
 
+    // Cursor y su rectángulo
     let cursor = document.getElementById("cursor");
+    let cursorRect = cursor.getBoundingClientRect();
+
+    // Marco y su rectángulo
+    let marco = document.getElementById("marco");
+    let marcoRect = marco.getBoundingClientRect();
 
     // Inicializar si está vacío
     if (!cursor.style.top) cursor.style.top = "550px";
     if (!cursor.style.left) cursor.style.left = "950px";
 
+    // Cantidad de píxeles que se desplaza el cursor
+    let desplazamiento = 15;
+
+    console.log(cursor.style.left, cursor.style.top);
+    console.log(cursorRect.left, cursorRect.top);
+
+
     switch(event.key){
         case "ArrowLeft":
-            newLeft = parseInt(cursor.style.left) - 15;
-            cursor.style.left = newLeft + "px";
+            newLeft = parseInt(cursor.style.left) - desplazamiento;
+            if(newLeft > marcoRect.left){
+                cursor.style.left = newLeft + "px";
+            }
             break;
 
         case "ArrowUp":
-            newTop = parseInt(cursor.style.top) - 15;
-            cursor.style.top = newTop + "px";
+            newTop = parseInt(cursor.style.top)  - desplazamiento;
+            if(newTop > marcoRect.top){
+                cursor.style.top = newTop + "px";
+            }
             break;
 
         case "ArrowRight":
-            newLeft = parseInt(cursor.style.left) + 15;
-            cursor.style.left = newLeft + "px";
+            newLeft = parseInt(cursor.style.left)  + desplazamiento;
+            if(newLeft < marcoRect.right){
+                cursor.style.left = newLeft + "px";
+            }     
             break;
 
         case "ArrowDown":
-            newTop = parseInt(cursor.style.top) + 15;
-            cursor.style.top = newTop + "px";
+            newTop = parseInt(cursor.style.top) + desplazamiento;
+            if(newTop < marcoRect.bottom){
+                cursor.style.top = newTop + "px";
+            }
             break;
 
         case "Enter":
@@ -71,23 +84,16 @@ function moverCursor(event){
     }
 
     // Se activa la funcion cada vez que se mueve el cursor para detectar si se solapa con algún otro elemento
-    detectarColision();
+    detectarColision(cursorRect);
 }
 
 
-function detectarColision(){
-    let cursor = document.getElementById("cursor");
-    let cursorRect = cursor.getBoundingClientRect();
+function detectarColision(cursorRect){
 
     let notas = document.querySelectorAll(".nota");
     let logo = document.querySelector(".logo");
 
     notaSeleccionada = null;
-
-    // Quitar hover del logo siempre al empezar
-    if (logo) {
-        logo.classList.remove("hover-cursor");
-    }
 
     // Detectar colisión con el logo
     if (logo) {
@@ -100,20 +106,22 @@ function detectarColision(){
             cursorRect.bottom > rectLogo.top;
 
         if (colisionLogo){
-            console.log("COLISIÓN CON LOGO");
             logo.classList.add("hover-cursor");
+        } else {
+            logo.classList.remove("hover-cursor");
+
         }
     }
  
     // Detectar colisión con las notas
     notas.forEach(nota => {
-        let rect = nota.getBoundingClientRect();
+        let rectNota = nota.getBoundingClientRect();
 
         let colision =
-            cursorRect.left < rect.right &&
-            cursorRect.right > rect.left &&
-            cursorRect.top < rect.bottom &&
-            cursorRect.bottom > rect.top;
+            cursorRect.left < rectNota.right &&
+            cursorRect.right > rectNota.left &&
+            cursorRect.top < rectNota.bottom &&
+            cursorRect.bottom > rectNota.top;
 
         if (colision){
             nota.classList.add("hover-cursor");
