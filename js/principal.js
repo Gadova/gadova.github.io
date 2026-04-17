@@ -32,7 +32,7 @@ let desplazamiento = 15;
 // Variable que indica qué nota está bajo el cursor 
 let notaSeleccionada;
 
-// Velocidad inicial
+// Velocidad inicial de la pelota
 let velocidadX = 3; let velocidadY = 3;
 
 // Función para mover el cursor
@@ -108,7 +108,7 @@ function moverPelota() {
     // Posición inicial de la pelota
     if (!pelota.style.top) pelota.style.top = "600px";
     if (!pelota.style.left) pelota.style.left = "400px";
-    console.log(pelota.style.top, pelota.style.left)
+    //console.log(pelota.style.top, pelota.style.left)
 
     // Rebote horizontal
     if (pelotaRect.left <= tableroRect.left || pelotaRect.right >= tableroRect.right) {
@@ -124,7 +124,7 @@ function moverPelota() {
     pelota.style.left = (pelotaRect.left + velocidadX) + "px";
     pelota.style.top = (pelotaRect.top + velocidadY) + "px";
 
-    //detectarGolpePelota(); POR HACER
+    detectarColision();
 
     requestAnimationFrame(moverPelota);
 }
@@ -139,6 +139,10 @@ function detectarColision(){
     // Logo y notas
     let logo = document.querySelector(".logo");
     let notas = document.querySelectorAll(".nota");
+
+    // Pelota y su rectángulo
+    let pelota = document.getElementById("pelota");
+    let pelotaRect = pelota.getBoundingClientRect();
 
     // No hay ninguna nota seleccionada
     notaSeleccionada = null;
@@ -179,6 +183,22 @@ function detectarColision(){
             nota.classList.remove("hover-cursor");
         }
     });
+
+    // Detectar colisión con la pelota y hacer que cambie de dirección
+    if(pelota){
+
+        let colisionPelota =
+        cursorRect.left < pelotaRect.right &&
+        cursorRect.right > pelotaRect.left &&
+        cursorRect.top < pelotaRect.bottom &&
+        cursorRect.bottom > pelotaRect.top;
+
+        if (colisionPelota) {
+            // Cambiar dirección aleatoriamente
+            velocidadX *= (Math.random() > 0.5 ? 1 : -1);
+            velocidadY *= (Math.random() > 0.5 ? 1 : -1);
+        }
+    }  
 }
 
 // Activar/Invocar la función
