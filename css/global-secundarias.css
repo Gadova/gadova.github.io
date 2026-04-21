@@ -1,150 +1,161 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 /* ============================
-    CONFIGURACIÓN GENERAL
+    VARIABLES
    ============================ */
 
 :root {
-    --color-fondo: #7089b0;
-    --color-texto: #000000;
-    --color-papel: #f0dece;
-    --color-tabla: #f1f1f1;
-    --borde: 2px solid #000000;
-    --sombra: 5px 5px 0 #000000;
-    --max-ancho: 1250px;
+    --color-fondo: #121212;
+    --color-marco: #1E1E1E;
+    --color-primario: #0A84FF;
+    --color-secundario: #ffffff;
+    --color-texto: #e6e6e6;
+    --color-texto-suave: #aaaaaa;
+
+    --borde: 1px solid #2a2a2a;
+    --sombra: 0 10px 30px rgba(0,0,0,0.35);
+
+    --max-ancho: 1100px;
+    --radio: 14px;
 }
+
+/* ============================
+    GENERAL
+   ============================ */
 
 body {
-    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
     background-color: var(--color-fondo);
-    font-family: 'Roboto';
-    margin: 0; padding: 0;
+    color: var(--color-texto);
+    font-family: "Inter", sans-serif;
 }
+
 /* ============================
-    PÁRRAFOS Y TEXTOS
+    HEADER
    ============================ */
+
+.cabecera-sec {
+    max-width: var(--max-ancho);
+    margin: 30px auto 10px auto;
+    padding: 10px 20px;
+}
+
+.volver a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color .2s;
+}
+
+.volver a:hover {
+    color: var(--color-primario);
+}
+
+.titulo-sec {
+    margin: 10px 0 0 0;
+    padding-bottom: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--color-primario);
+}
+
+/* ============================
+    MAIN
+   ============================ */
+
+.contenido-sec {
+    max-width: var(--max-ancho);
+    margin: 30px auto;
+    padding: 25px 30px;
+    background-color: var(--color-marco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
 
 h2 {
-    border-left: var(--borde);
     font-size: 22px;
-    text-transform: uppercase;
-    margin-top: 40px; padding-left: 10px;
+    margin-top: 30px;
+    color: var(--color-primario);
 }
 
-p, li, td, th {
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-/* ============================
-    CONFIGURACIÓN MAIN
-   ============================ */
-
-main {
-    background-color: var(--color-papel);
-    border: var(--borde);
-    box-shadow: var(--sombra);
-    max-width: var(--max-ancho);
-    margin: 40px auto; padding: 20px 30px;
-    
-}
-
-/* ============================
-    CONFIGURACIÓN HEADER
-   ============================ */
-
-header {
-    max-width: var(--max-ancho);
-    margin: 30px auto 10px auto; padding: 10px 20px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-header p {
-    margin: 0;
-    font-weight: bold;
-}
-
-header a {
+p, li {
+    font-size: 17px;
+    line-height: 1.6;
     color: var(--color-texto);
-    text-decoration: underline;
-}
-
-header h1 {
-    border-bottom: var(--borde);
-    font-size: 28px;
-    text-transform: uppercase;
-    margin: 0; padding-bottom: 5px;
 }
 
 /* ============================
-    CONFIGURACIÓN TABLAS
+    TABLAS (MODERNIZADAS)
    ============================ */
 
 table {
     width: 100%;
-    background-color: var(--color-tabla);
-    box-shadow: var(--sombra);
     border-collapse: collapse;
-    margin: 20px 0;
-    
+    margin: 25px 0;
+    background-color: #181818;
+    border-radius: var(--radio);
+    overflow: hidden;
 }
 
 td, th {
     border: var(--borde);
-    padding: 10px;
+    padding: 12px;
+    font-size: 16px;
 }
 
 td img {
-    border: var(--borde);
-    box-shadow: var(--sombra);
-    width: 100%; max-width: 150px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+    width: 100%;
+    max-width: 150px;
+    border-radius: var(--radio);
     display: block;
     margin: auto;
-
-}
-
-#fotoRetrato {
-    aspect-ratio: auto;
-}
-
-.datoEncabezado{
-    font-weight: bold;
-}
-
-.datoReal{
-    font-style: italic;
 }
 
 /* ============================
-    CONFIGURACIÓN FOOTER
+    FOOTER
    ============================ */
 
-footer {
-    font-weight: bold;
-    display: flex;
-    justify-content: flex-end;
-
+.pie-sec {
     max-width: var(--max-ancho);
     margin: 20px auto 40px auto;
     padding: 0 20px;
-
+    text-align: right;
+    color: var(--color-texto-suave);
+    font-size: 14px;
 }
 
+/* ============================
+    BOTÓN SUBIR
+   ============================ */
 
 #botonSubir {
-    text-decoration: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 55px;
+    height: 55px;
+
+    background-color: var(--color-primario);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     cursor: pointer;
-    width: 50px; height: 50px;
-    margin-left: 15px;
+    text-decoration: none;
+
+    transition: transform .2s ease, box-shadow .2s ease;
+    z-index: 999;
 }
 
 #botonSubir img {
-    width: 50px; height: 50px;
-    object-fit: contain;
+    width: 28px;
+    height: 28px;
+    filter: invert(1);
 }
 
+#botonSubir:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+}

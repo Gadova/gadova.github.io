@@ -5,9 +5,6 @@ let newLeft;
 // Cantidad de píxeles que se desplaza el cursor
 let desplazamiento = 15;
 
-// Variable que indica qué nota está bajo el cursor
-let notaSeleccionada;
-
 // Velocidad inicial de la pelota
 let velocidadX = 3;
 let velocidadY = 3;
@@ -56,12 +53,6 @@ function moverCursor(event){
                 cursor.style.top = newTop + "px";
             }
             break;
-
-        case "Enter":
-            if (notaSeleccionada) {
-                window.location.href = notaSeleccionada.href;
-            }
-            return;
     }
 
     // Se activa la funcion cada vez que se mueve el cursor para detectar si se solapa con algún otro elemento
@@ -117,52 +108,9 @@ function detectarColision(){
     if (!cursor) return;
     let cursorRect = cursor.getBoundingClientRect();
 
-    // Logo y notas
-    let logo = document.querySelector(".logo");
-    let notas = document.querySelectorAll(".nota");
-
     // Pelota y su rectángulo
     let pelota = document.getElementById("pelota");
     let pelotaRect = pelota ? pelota.getBoundingClientRect() : null;
-
-    // No hay ninguna nota seleccionada
-    notaSeleccionada = null;
-
-    // Detectar colisión con el logo
-    if (logo) {
-        let rectLogo = logo.getBoundingClientRect();
-
-        let colisionLogo =
-            cursorRect.left < rectLogo.right &&
-            cursorRect.right > rectLogo.left &&
-            cursorRect.top < rectLogo.bottom &&
-            cursorRect.bottom > rectLogo.top;
-
-        if (colisionLogo){
-            logo.classList.add("hover-cursor");
-        } else {
-            logo.classList.remove("hover-cursor");
-        }
-    }
-
-    // Detectar colisión con las notas
-    notas.forEach(nota => {
-        let rectNota = nota.getBoundingClientRect();
-
-        let colisionNota =
-            cursorRect.left < rectNota.right &&
-            cursorRect.right > rectNota.left &&
-            cursorRect.top < rectNota.bottom &&
-            cursorRect.bottom > rectNota.top;
-
-        if (colisionNota){
-            nota.classList.add("hover-cursor");
-            // Marcar la nota que está debajo del cursor como seleccionada
-            notaSeleccionada = nota;
-        } else {
-            nota.classList.remove("hover-cursor");
-        }
-    });
 
     // Detectar colisión con la pelota y hacer que cambie de dirección
     if(pelota && pelotaRect){
