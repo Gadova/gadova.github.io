@@ -1,0 +1,25 @@
+{
+  "name": "gadova.github.io",
+  "version": "1.0.0",
+  "description": "Mi proyecto de prácticas de empresa del primer curso del ciclo de FP Superior de Desarrollo de Aplicaciones Multiplataforma",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gadova/gadova.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gadova/gadova.github.io/issues"
+  },
+  "homepage": "https://github.com/Gadova/gadova.github.io#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "nodemailer": "^8.0.5"
+  }
+}

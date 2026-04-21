@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ============================
+    CONFIGURACIÓN GENERAL
+   ============================ */
+
+:root {
+    --color-fondo: #93abcc;
+    --color-texto: #000000;
+    --color-papel: #fff8d6;
+    --color-tabla: #f1f1f1;
+    --borde: 2px solid #000000;
+    --sombra: 5px 5px 0 #000000;
+    --max-ancho: 1250px;
+}
+
+body {
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    font-family: 'Roboto';
+    margin: 0; padding: 0;
+}
+/* ============================
+    PÁRRAFOS Y TEXTOS
+   ============================ */
+
+h2 {
+    border-left: var(--borde);
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-top: 40px; padding-left: 10px;
+}
+
+p, li, td, th {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* ============================
+    CONFIGURACIÓN MAIN
+   ============================ */
+
+main {
+    background-color: var(--color-papel);
+    border: var(--borde);
+    box-shadow: var(--sombra);
+    max-width: var(--max-ancho);
+    margin: 40px auto; padding: 20px 30px;
+    
+}
+
+/* ============================
+    CONFIGURACIÓN HEADER
+   ============================ */
+
+header {
+    max-width: var(--max-ancho);
+    margin: 30px auto 10px auto; padding: 10px 20px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+header p {
+    margin: 0;
+    font-weight: bold;
+}
+
+header a {
+    color: var(--color-texto);
+    text-decoration: underline;
+}
+
+header h1 {
+    border-bottom: var(--borde);
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 0; padding-bottom: 5px;
+}
+
+/* ============================
+    CONFIGURACIÓN TABLAS
+   ============================ */
+
+table {
+    width: 100%;
+    background-color: var(--color-tabla);
+    box-shadow: var(--sombra);
+    border-collapse: collapse;
+    margin: 20px 0;
+    
+}
+
+td, th {
+    border: var(--borde);
+    padding: 10px;
+}
+
+td img {
+    border: var(--borde);
+    box-shadow: var(--sombra);
+    width: 100%; max-width: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+
+}
+
+#fotoRetrato {
+    aspect-ratio: auto;
+}
+
+.datoEncabezado{
+    font-weight: bold;
+}
+
+.datoReal{
+    font-style: italic;
+}
+
+/* ============================
+    CONFIGURACIÓN FOOTER
+   ============================ */
+
+footer {
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+
+    max-width: var(--max-ancho);
+    margin: 20px auto 40px auto;
+    padding: 0 20px;
+
+}
+
+
+#botonSubir {
+    text-decoration: none;
+    cursor: pointer;
+    width: 50px; height: 50px;
+    margin-left: 15px;
+}
+
+#botonSubir img {
+    width: 50px; height: 50px;
+    object-fit: contain;
+}
+
