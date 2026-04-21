@@ -1,76 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Página Web Principal: Iván Fraga Prado</title>
-		<link rel="icon" href="./assets/img/favicon.png" type="image/svg+xml">
-		<link rel="stylesheet" href="./css/principal.css">
-		<script defer src="./js/principal.js"></script>
-	</head>
-	<body onKeyDown="moverCursor(event)">
-		<div id="marco">
-			<header>
-				<img src="./assets/img/favicon.png" alt="Logo" class="logo">
-				<h1>Iván Fraga Prado</h1>
-				<h2>Estudiante de DAM | Desarrollo Web</h2>
-				<section id="titulo-principal">
-					<h1>Acceso a los contenidos</h1>
-				</section>
-			</header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Iván Fraga Prado</title>
+    <link rel="icon" href="./assets/img/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/principal.css">
+	<script defer src="./js/principal.js"></script>
 
-			<main id="tablero">
-				<section id="sobre-mi">
-					<a href="./src/sobre-mi.html" class="nota">
-						<figure>
-							<img src="./assets/img/principal/tablero-sobre-mi.jpg" alt="Sobre mí">
-							<figcaption>Sobre mí</figcaption>
-						</figure>
-					</a>
-				</section>
-				<section id="estudios">
-					<a href="./src/estudios.html" class="nota">
-						<figure>
-							<img src="./assets/img/principal/tablero-estudios.jpg" alt="Estudios">
-							<figcaption>Estudios</figcaption>
-						</figure>
-					</a>
-				</section>
-				<section id="proyectos">
-					<a href="./src/proyectos.html" class="nota">
-						<figure>
-							<img src="./assets/img/principal/tablero-proyectos.jpg" alt="Proyectos">
-							<figcaption>Proyectos</figcaption>
-						</figure>
-					</a>
-				</section>
-				<section id="intereses">
-					<a href="./src/intereses.html" class="nota">
-						<figure>
-							<img src="./assets/img/principal/tablero-intereses.jpg" alt="Intereses">
-							<figcaption>Intereses</figcaption>
-						</figure>
-					</a>
-				</section>
-				<section id="contacto">
-					<a href="./src/contacto.html" class="nota">
-						<figure>
-							<img src="./assets/img/principal/tablero-contacto.jpg" alt="Contacto">
-							<figcaption>Contacto</figcaption>
-						</figure>
-					</a>
-				</section>
-				<section>
-					<div id="pelota"></div>
-					<div id="cursor">
-						<img src="./assets/img/principal/cursor.png" alt="cursor">
-					</div>
-				</section>
-			</main>
+</head>
+<body>
+    <div id="marco">
+        <header class="cabecera">
+            <div class="cabecera__info">
+                <img src="./assets/img/favicon.png" alt="Logo personal de Iván Fraga Prado" class="logo">
+                <div>
+                    <h1 class="cabecera__nombre">Iván Fraga Prado</h1>
+                    <h2 class="cabecera__rol">Estudiante de DAM - Desarrollador en formación</h2>
+                </div>
+            </div>
+        </header>
 
-			<footer>
-				<p>Hecho por Iván Fraga Prado</p>
-			</footer>
+        <section id="titulo-principal">
+            <h1>Explora mi portfolio</h1>
+        </section>
+
+        <main id="tablero" aria-label="Secciones principales del portfolio">
+            <a href="./src/sobre-mi.html" class="nota">
+                <figure class="nota__contenido">
+                    <div class="nota__icono nota__icono--sobre-mi" aria-hidden="true">🙂</div>
+                    <figcaption>Sobre mí</figcaption>
+                </figure>
+            </a>
+
+            <a href="./src/estudios.html" class="nota">
+                <figure class="nota__contenido">
+                    <div class="nota__icono nota__icono--estudios" aria-hidden="true">🎓</div>
+                    <figcaption>Estudios</figcaption>
+                </figure>
+            </a>
+
+            <a href="./src/intereses.html" class="nota">
+                <figure class="nota__contenido">
+                    <div class="nota__icono nota__icono--intereses" aria-hidden="true">⭐</div>
+                    <figcaption>Intereses</figcaption>
+                </figure>
+            </a>
+
+            <a href="./src/proyectos.html" class="nota">
+                <figure class="nota__contenido">
+                    <div class="nota__icono nota__icono--proyectos" aria-hidden="true">💡</div>
+                    <figcaption>Proyectos</figcaption>
+                </figure>
+            </a>
+
+            <a href="./src/contacto.html" class="nota">
+                <figure class="nota__contenido">
+                    <div class="nota__icono nota__icono--contacto" aria-hidden="true">✉️</div>
+                    <figcaption>Contacto</figcaption>
+                </figure>
+            </a>
+        </main>
+    </div>
+
+	<section id="zona-juego">
+		<h2>Zona interactiva</h2>
+		<div id="marco-juego">
+			<div id="pelota"></div>
+			<div id="cursor">
+				<img src="./assets/img/principal/cursor.png" alt="cursor">
+			</div>
 		</div>
-	</body>
+	</section>
+
+</body>
 </html>
+

@@ -1,159 +1,323 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 /* ============================
-    CONFIGURACIÓN PERSONAL
-   ============================ */
-
-/* Clases personalizadas dinámicas para la función moverCursor() y detectarColision() */
-.nota.hover-cursor {
-    transform: scale(1.05);
-}
-
-.logo.hover-cursor {
-    transform: rotate(180deg);
-}
-
-/* ============================
-    CONFIGURACIÓN GENERAL
+    VARIABLES Y CONFIGURACIÓN
    ============================ */
 
 :root {
-    --color-fondo: #93abcc;
-    --color-texto: #000000;
-    --color-texto-titulo: #d2bd9f;
-    --color-fondo-titulo: #000000;
-    --borde: 2px solid #000000;
-    --sombra: 5px 5px 0 #000000;
-    --max-ancho: 1500px;
-}
- 
-body {
-    color: var(--color-texto);
-    background-color: var(--color-fondo);
-    font-family: 'Roboto';
-    font-weight: bold;
-    margin: 0; padding: 0;
-}
+    
+    --color-fondo-pagina: #121212;
+    --color-fondo-marco: #1E1E1E;
+    --color-primario: #0A84FF;
+    --color-secundario: #ffffff;
+    --color-acento: #FFD166;
+    --color-texto: #1A1A1A;
+    --color-texto-suave: #555555;
 
-/* Configuración de la ventana interior */
-#marco {
-    background-image: url("../assets/img/principal/tablero.jpg");
-    border: var(--borde);
-    box-shadow: var(--sombra);
-    max-width: var(--max-ancho);
-    margin: 40px auto; padding: 30px;
-}
+    --borde-marco: 2px solid #1E1E1E;
+    --sombra-marco: 0 10px 30px #0000001f;
 
-#cursor {
-    position:absolute;
-    top:550px; left:950px;
-    /* Permite movimiento suave */
-    transition: top 0.05s linear, left 0.05s linear;
-}
+    --radio-tarjeta: 14px;
+    --sombra-tarjeta: 0 8px 20px #0000001f;
 
-#cursor img {
-    width: 30px; height: 30px;
-    object-fit: contain;
+    --max-ancho: 1100px;
 }
-
-#pelota {
-    position: absolute;
-    background-color: #d10000;
-    width: 15px; height: 15px;
-    border-radius: 100%;
-}
-
 
 /* ============================
-    CONFIGURACIÓN HEADER
+    ESTILOS GENERALES
    ============================ */
 
-header img {
-    object-fit: cover;
-    float: left;
-    width: 80px; height: 80px;
-    margin-top: -15px;
-    transition: transform 1s ease;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-header img:hover {
-    transform: rotate(180deg);
-}
-
-header h1 {
-    font-size: 20px;
-    text-transform: uppercase;
+body {
     margin: 0;
+    padding: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-texto);
 }
 
-header h2 {
-    font-size: 16px;
-    text-transform: uppercase;
-    margin: 5px 0 20px 0;
+/* Contenedor principal */
 
-}
-
-#titulo-principal h1{
-    color: var(--color-texto-titulo);
-    background-color: var(--color-fondo-titulo);
-    font-size: 25px;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0; padding: 20px;
+#marco {
+    max-width: var(--max-ancho);
+    margin: 40px auto;
+    padding: 32px 28px 24px;
+    background-color: var(--color-fondo-marco);
+    border: var(--borde-marco);
+    box-shadow: var(--sombra-marco);
+    border-radius: 18px;
 }
 
 /* ============================
-    CONFIGURACIÓN MAIN (TABLERO)
+    CABECERA
+   ============================ */
+
+.cabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.cabecera__info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    object-fit: cover;
+    border: 2px solid var(--color-secundario);
+    transition: transform 0.18s ease;
+}
+
+.logo:hover {
+    transform: rotate(-8deg) scale(1.03);
+}
+
+.cabecera__nombre {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-primario);
+}
+
+.cabecera__rol {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 4px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-texto-suave);
+}
+
+.cabecera__tagline {
+    margin: 4px 0 0 0;
+    font-size: 0.95rem;
+    color: var(--color-texto-suave);
+}
+
+/* ============================
+    TÍTULO PRINCIPAL
+   ============================ */
+
+#titulo-principal {
+    margin: 18px 0 10px;
+}
+
+#titulo-principal h1 {
+    margin: 0;
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-primario);
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: linear-gradient(
+        135deg,
+        rgba(10, 132, 255, 0.08),
+        rgba(255, 209, 102, 0.12)
+    );
+}
+
+/* ============================
+    TABLERO (GRID DE SECCIONES)
    ============================ */
 
 #tablero {
-    max-height: 500px;
-    border: var(--borde);
-    
+    margin-top: 26px;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
-/* Tamaño de las notas */
+/* Tarjetas */
+
 .nota {
     text-decoration: none;
-    display: block;
-    transition: transform 0.5s ease;
+    color: inherit;
+    outline: none;
 }
 
-.nota:hover {
-    transform: scale(1.05);
-
+.nota__contenido {
+    margin: 0;
+    padding: 18px 16px 16px;
+    border-radius: var(--radio-tarjeta);
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--sombra-tarjeta);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease,
+        background-color 0.18s ease;
 }
 
-/* Imágenes de las notas */
-.nota img {
-    border: var(--borde);
-    box-shadow: var(--sombra);
-    width: 100%; max-width: 150px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+/* Iconos */
+
+.nota__icono {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: rgba(10, 132, 255, 0.06);
+    color: var(--color-primario);
 }
 
-/* Descripciones de las notas */
+/* Podrías personalizar por sección si quieres matices distintos */
+.nota__icono--sobre-mi {
+    background-color: rgba(10, 132, 255, 0.10);
+}
+
+.nota__icono--estudios {
+    background-color: rgba(0, 200, 150, 0.10);
+}
+
+.nota__icono--intereses {
+    background-color: rgba(255, 209, 102, 0.18);
+}
+
+.nota__icono--proyectos {
+    background-color: rgba(255, 105, 180, 0.12);
+}
+
+.nota__icono--contacto {
+    background-color: rgba(120, 120, 255, 0.14);
+}
+
+/* Texto de la tarjeta */
+
 .nota figcaption {
-    color: var(--color-texto);
+    font-size: 0.98rem;
+    font-weight: 600;
     text-align: center;
-    padding-top: 5px;
+    color: var(--color-primario);
 }
 
-/* Ubicación de cada nota */
-#sobre-mi   { grid-column: 2; grid-row: 2; }
-#estudios   { grid-column: 4; grid-row: 2; }
-#intereses  { grid-column: 6; grid-row: 2; }
-#proyectos  { grid-column: 2; grid-row: 3; }
-#contacto   { grid-column: 6; grid-row: 3; }
+/* Hover y focus */
+
+.nota__contenido:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+    border-color: var(--color-secundario);
+    background-color: #FDFEFF;
+}
+
+.nota:focus-visible .nota__contenido {
+    outline: 3px solid var(--color-secundario);
+    outline-offset: 3px;
+}
 
 /* ============================
-    CONFIGURACIÓN FOOTER
+    FOOTER
    ============================ */
 
-footer {
+.pie {
+    margin-top: 28px;
     text-align: right;
+    font-size: 0.85rem;
+    color: var(--color-texto-suave);
 }
+
+/* ============================
+    RESPONSIVE
+   ============================ */
+
+@media (max-width: 720px) {
+    #marco {
+        margin: 20px 12px;
+        padding: 22px 18px 18px;
+    }
+
+    .cabecera__info {
+        align-items: flex-start;
+    }
+
+    .cabecera__nombre {
+        font-size: 1.4rem;
+    }
+
+    .cabecera__rol {
+        font-size: 0.85rem;
+    }
+
+    #titulo-principal h1 {
+        font-size: 1.05rem;
+        letter-spacing: 0.10em;
+        padding: 10px 14px;
+    }
+
+    #tablero {
+        gap: 18px;
+    }
+
+    .nota__contenido {
+        padding: 16px 14px 14px;
+    }
+}
+
+/* ============================
+    ZONA DE JUEGO
+   ============================ */
+
+#zona-juego {
+    margin-top: 40px;
+}
+
+#zona-juego h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--color-primario);
+}
+
+/* Marco del minijuego */
+#marco-juego {
+    position: relative;
+    height: 300px;
+    border: 2px solid var(--color-secundario);
+    border-radius: 12px;
+    background: #111;
+    overflow: hidden;
+}
+
+/* Cursor */
+#cursor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transition: top 0.05s linear, left 0.05s linear;
+}
+
+/* Imagen del cursor */
+#cursor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Pelota */
+#pelota {
+    position: absolute;
+    background-color: #d10000;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+

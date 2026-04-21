@@ -1,84 +1,58 @@
-/*
-function cambiaColor(){
-
-    let r = Math.floor(Math.random()*255)
-    let g = Math.floor(Math.random()*255)
-    let b = Math.floor(Math.random()*255)
-
-    zona3 = document.getElementsByClassName("Zona-3");
-
-    zona3[0].style.backgroundColor= 'rgb('+ r + ',' + g + ',' + b + ')';
-
-}
-
-
-function cambiarColor(micolor) {
-    const zona1 = document.getElementsByClassName("Zona-1");
-    zona1[0].style.color = micolor;
-    if(micolor === 'white' || micolor === 'yellow'){
-        zona1[0].style.backgroundColor = '#3b3a3a';
-    } else{
-        zona1[0].style.backgroundColor = '#b1acac';
-    }
-}
-*/
-
 // Variables para calcular nuevos top y left
-let newTop; let newLeft;
+let newTop;
+let newLeft;
 
 // Cantidad de píxeles que se desplaza el cursor
 let desplazamiento = 15;
 
-// Variable que indica qué nota está bajo el cursor 
+// Variable que indica qué nota está bajo el cursor
 let notaSeleccionada;
 
 // Velocidad inicial de la pelota
-let velocidadX = 3; let velocidadY = 3;
+let velocidadX = 3;
+let velocidadY = 3;
 
 // Función para mover el cursor
 function moverCursor(event){
 
     // Cursor y su rectángulo
     let cursor = document.getElementById("cursor");
+    if (!cursor) return;
     let cursorRect = cursor.getBoundingClientRect();
 
-    // Marco y su rectángulo
-    let marco = document.getElementById("marco");
-    let marcoRect = marco.getBoundingClientRect();
+    // Marco del juego
+    let marco = document.getElementById("marco-juego");
+    if (!marco) return;
 
-    // Inicializar si está vacío
-    if (!cursor.style.top) cursor.style.top = "550px";
-    if (!cursor.style.left) cursor.style.left = "950px";
-
-    console.log(cursor.style.left, cursor.style.top);
-    console.log(cursorRect.left, cursorRect.top);
-
+    // Inicializar si está vacío (posiciones dentro del nuevo marco)
+    if (!cursor.style.top) cursor.style.top = "100px";
+    if (!cursor.style.left) cursor.style.left = "100px";
 
     switch(event.key){
         case "ArrowLeft":
             newLeft = parseInt(cursor.style.left) - desplazamiento;
-            if(newLeft >= marcoRect.left){
+            if(newLeft >= 0){
                 cursor.style.left = newLeft + "px";
             }
             break;
 
         case "ArrowUp":
             newTop = parseInt(cursor.style.top)  - desplazamiento;
-            if(newTop >= marcoRect.top){
+            if(newTop >= 0){
                 cursor.style.top = newTop + "px";
             }
             break;
 
         case "ArrowRight":
             newLeft = parseInt(cursor.style.left)  + desplazamiento;
-            if(newLeft <= marcoRect.right){
+            if(newLeft + cursorRect.width <= marco.clientWidth){
                 cursor.style.left = newLeft + "px";
-            }     
+            }
             break;
 
         case "ArrowDown":
             newTop = parseInt(cursor.style.top) + desplazamiento;
-            if(newTop <= marcoRect.bottom){
+            if(newTop + cursorRect.height <= marco.clientHeight){
                 cursor.style.top = newTop + "px";
             }
             break;
@@ -97,18 +71,20 @@ function moverCursor(event){
 // Función que permite a la pelota moverse automáticamente
 function moverPelota() {
 
-    // Tablero y su rectángulo
+    // Pelota
     let pelota = document.getElementById("pelota");
-    let pelotaRect = pelota.getBoundingClientRect();
-    
-    // Pelota y su rectángulo
-    let tablero = document.getElementById("tablero");
+    if (!pelota) return;
+
+    // Marco del juego
+    let tablero = document.getElementById("marco-juego");
+    if (!tablero) return;
+
     let tableroRect = tablero.getBoundingClientRect();
+    let pelotaRect = pelota.getBoundingClientRect();
 
     // Posición inicial de la pelota
-    if (!pelota.style.top) pelota.style.top = "600px";
-    if (!pelota.style.left) pelota.style.left = "400px";
-    //console.log(pelota.style.top, pelota.style.left)
+    if (!pelota.style.top) pelota.style.top = "50px";
+    if (!pelota.style.left) pelota.style.left = "50px";
 
     // Rebote horizontal
     if (pelotaRect.left <= tableroRect.left || pelotaRect.right >= tableroRect.right) {
@@ -120,9 +96,13 @@ function moverPelota() {
         velocidadY *= -1;
     }
 
+    // Posiciones relativas actuales
+    let posLeft = parseInt(pelota.style.left) || 50;
+    let posTop  = parseInt(pelota.style.top)  || 50;
+
     // Mover pelota
-    pelota.style.left = (pelotaRect.left + velocidadX) + "px";
-    pelota.style.top = (pelotaRect.top + velocidadY) + "px";
+    pelota.style.left = (posLeft + velocidadX) + "px";
+    pelota.style.top  = (posTop  + velocidadY) + "px";
 
     detectarColision();
 
@@ -134,6 +114,7 @@ function detectarColision(){
     
     // Cursor y su rectángulo
     let cursor = document.getElementById("cursor");
+    if (!cursor) return;
     let cursorRect = cursor.getBoundingClientRect();
 
     // Logo y notas
@@ -142,7 +123,7 @@ function detectarColision(){
 
     // Pelota y su rectángulo
     let pelota = document.getElementById("pelota");
-    let pelotaRect = pelota.getBoundingClientRect();
+    let pelotaRect = pelota ? pelota.getBoundingClientRect() : null;
 
     // No hay ninguna nota seleccionada
     notaSeleccionada = null;
@@ -161,10 +142,9 @@ function detectarColision(){
             logo.classList.add("hover-cursor");
         } else {
             logo.classList.remove("hover-cursor");
-
         }
     }
- 
+
     // Detectar colisión con las notas
     notas.forEach(nota => {
         let rectNota = nota.getBoundingClientRect();
@@ -185,7 +165,7 @@ function detectarColision(){
     });
 
     // Detectar colisión con la pelota y hacer que cambie de dirección
-    if(pelota){
+    if(pelota && pelotaRect){
 
         let colisionPelota =
         cursorRect.left < pelotaRect.right &&
@@ -198,8 +178,9 @@ function detectarColision(){
             velocidadX *= (Math.random() > 0.5 ? 1 : -1);
             velocidadY *= (Math.random() > 0.5 ? 1 : -1);
         }
-    }  
+    }
 }
 
 // Activar/Invocar la función
+window.addEventListener("keydown", moverCursor);
 moverPelota();
