@@ -39,7 +39,7 @@ app.post("/contacto", async (req, res) => {
             service: "gmail",
             auth: {
                 user: "gadova.mmi@gmail.com",
-                pass: "ikaf unst zhyq hxci "
+                pass: "censurado"
             }
         });
 
