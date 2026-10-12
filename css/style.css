@@ -1,0 +1,118 @@
+/* Paleta de color y fuentes */
+:root {
+    --azul-oscuro: rgb(6, 17, 44);
+    /*Color Secundario*/
+    --azul-indigo: rgb(8, 0, 168);
+    /*Color Principal:  contraste y profundidad*/
+    --azul: rgb(7, 91, 208);
+    /*Color Principal:  fondos, superficies y degradados*/
+    --azul-cielo: rgb(21, 159, 224);
+    /*Color Secundario*/
+    --azul-cian: rgb(25, 189, 242);
+    /*Color Principal:  énfasis*/
+    --blanco: rgb(245, 248, 255);
+    /*Color Principal:  texto*/
+
+    --bordes: rgba(255, 255, 255, .28);
+    /*Color para efecto visual*/
+    --translucido: rgba(3, 18, 74, .34);
+    /*Color para efecto visual*/
+    --sombras: 0 20px 70px rgba(0, 0, 40, .28);
+    /*Color para efecto visual*/
+
+    --fuentesDecorativas: 'Barlow Condensed', Impact, sans-serif;
+    --fuentesLectura: Inter, system-ui, sans-serif;
+}
+/*---------------------------------------------------------------*/
+
+/* CUERPO */
+body{
+    margin: 0;
+    color: var(--blanco);
+    font-family: var(--fuentesLectura);
+    background: var(--azul);
+    overflow: hidden
+}
+/*---------------------------------------------------------------*/
+
+/* ENCABEZADO */
+.encabezado {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 88px;
+    padding: 18px 42px;
+    border-bottom: 1px solid var(--bordes);
+    z-index: 10;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(180deg, rgba(0, 15, 80, .3), transparent)
+}
+
+.encabezado-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left
+}
+
+.encabezado-logo-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: var(--azul-oscuro);
+    clip-path: polygon(0 0, 100% 0, 100% 78%, 76% 100%, 0 100%);
+    overflow: hidden;
+}
+
+.encabezado-logo-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.encabezado-logo-desc {
+    display: flex;
+    flex-direction: column;
+    color: var(--blanco);
+    font: 700 16px var(--fuentesDecorativas);
+    letter-spacing: .08em
+}
+
+.encabezado-logo-desc small {
+    margin-top: 2px;
+    font: 500 10px var(--fuentesLectura);
+    letter-spacing: .18em;
+    opacity: .7;
+}
+
+.encabezado-estado {
+    margin-left: auto;
+    font: 600 11px var(--fuentesDecorativas);
+    letter-spacing: .14em;
+    opacity: .9
+}
+
+.encabezado-estado-bola-verde {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    background: rgb(103, 247, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 14px rgb(103, 247, 255);
+}
+
+.encabezado-estado-separador {
+    margin: 0 7px;
+    opacity: .4;
+}
+/*---------------------------------------------------------------*/
