@@ -541,6 +541,106 @@ main {
 
     /* SOBRE MÍ */
 
+    /* Distribución principal: tarjeta de perfil a la izquierda y datos personales a la derecha. */
+    .registro-contorno {
+        display: grid;
+        grid-template-columns: 300px minmax(300px, 600px);
+        align-items: center;
+        gap: 60px; /* Separa ambas columnas para que la tarjeta y el texto no queden demasiado juntos. */
+    }
+
+    /* TARJETA DE PERFIL */
+    /* Marco visual que contiene la imagen y el resumen de información personal. */
+    .registro-perfil {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Agrupa el contenido flexible hacia la parte inferior de la tarjeta. */
+        position: relative; /* Sirve de referencia para posicionar la decoración de .registro-foto. */
+        height: 350px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, .45);
+        background: linear-gradient(135deg, rgba(0, 15, 80, .4), rgba(30, 212, 255, .1)); /* Combina una zona azul oscura con otra cian translúcida. */
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); /* Recorta la esquina inferior derecha para mantener el lenguaje geométrico del diseño. */
+    }
+
+    /* Zona reservada para la imagen o el elemento gráfico del perfil. */
+    .registro-foto {
+        display: grid;
+        place-items: center; /* Centra el contenido tanto horizontal como verticalmente. */
+        position: absolute;
+        inset: 35px; /* Mantiene la decoración separada 35px de los cuatro bordes de la tarjeta. */
+        font: 800 170px var(--fuentesDecorativas);
+        color: transparent; /* Deja visible únicamente el contorno del texto, si lo hubiera. */
+        -webkit-text-stroke: 1px rgba(255, 255, 255, .35);
+    }
+
+    /* Imagen del perfil: se adapta al espacio disponible sin deformarse. */
+    .registro-foto img {
+        display: block;
+        width: 70%;
+        height: 70%;
+        object-fit: contain; /* Conserva la proporción original aunque la imagen no sea cuadrada. */
+        opacity: .7; /* Reduce la intensidad de la imagen para integrarla en el diseño. */
+    }
+
+    /* RESUMEN DEL PERFIL */
+
+    /* Distribuye las etiquetas y sus valores en dos columnas. */
+    .registro-resumen {
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr 1fr; /* Reserva el mismo espacio para las etiquetas y sus valores. */
+        gap: 3px 20px; /* Aplica 3px entre filas y 20px entre columnas. */
+        font: 600 11px var(--fuentesDecorativas);
+        letter-spacing: .1em;
+    }
+
+    /* Alinea los valores a la derecha para distinguirlos de sus etiquetas. */
+    .registro-resumen strong {
+        text-align: right;
+    }
+
+    /* INFORMACIÓN PERSONAL */
+
+    /* Limita la anchura del texto para evitar líneas excesivamente largas. */
+    .registro-datos {
+        max-width: 560px;
+    }
+
+    /* Nombre o encabezado destacado de la presentación personal. */
+    .registro-datos h3 {
+        font: 800 50px/.8 var(--fuentesDecorativas); /* La altura de línea compacta permite un título visualmente más contundente. */
+        margin: 10px 0 25px; /* Separa el título del contenido anterior y del texto que aparece debajo. */
+    }
+
+    /* Mantiene la inclinación de los fragmentos destacados del título. */
+    .registro-datos h3 em {
+        font-style: italic;
+    }
+
+    /* Texto descriptivo, excluyendo el párrafo reservado para el título de registro. */
+    .registro-datos > p:not(.registro-titulo) {
+        line-height: 1.5; /* Mejora la legibilidad al separar las líneas del texto. */
+        opacity: .8; /* Reduce ligeramente el contraste del texto secundario. */
+    }
+
+    /* HABILIDADES */
+
+    /* Organiza las etiquetas de habilidades en filas que se adaptan al espacio disponible. */
+    .registro-habilidades {
+        display: flex;
+        flex-wrap: wrap; /* Permite que las etiquetas pasen a otra fila si no caben. */
+        gap: 5px;
+        margin-top: 25px; /* Separa las habilidades del texto descriptivo. */
+    }
+
+    /* Apariencia de cada etiqueta de tecnología o habilidad. */
+    .registro-habilidades span {
+        padding: 7px 10px;
+        font: 700 10px var(--fuentesDecorativas);
+        letter-spacing: .1em;
+        border: 1px solid var(--bordes); /* Delimita cada habilidad sin añadir un fondo opaco. */
+    }
     /*-----------------------------*/
 
     /* CONTACTO */
