@@ -244,6 +244,66 @@ main {
     transform: none; /* Elimina el desplazamiento inicial de la pantalla activa. */
     visibility: visible;
 }
+
+/* TÍTULOS DE LAS SECCIONES */
+/* Reglas específicas para las cabeceras reutilizables de Proyectos, Sobre mí y Contacto. */
+.seccion-titulo {
+    display: flex;
+    /* Coloca la etiqueta y el título en una misma fila. */
+
+    justify-content: space-between;
+    /* Sitúa ambos elementos en extremos opuestos. */
+
+    align-items: flex-end;
+    /* Alinea los elementos por su borde inferior. */
+
+    gap: 30px;
+    /* Mantiene una separación mínima entre ambos elementos. */
+
+    margin-bottom: 30px;
+    /* Separa la cabecera del contenido que aparece debajo. */
+
+    max-width: 1000px;
+    /* Evita que la cabecera se extienda demasiado en pantallas anchas. */
+}
+
+/* Etiqueta secundaria de la cabecera, por ejemplo, un número o una categoría. */
+.seccion-titulo > span {
+    font: 700 10px var(--fuentesDecorativas);
+    letter-spacing: .2em;
+    opacity: .65;
+    /* Su tamaño reducido y su menor opacidad la mantienen en segundo plano. */
+}
+
+/* Título principal de la sección, por ejemplo, PROYECTOS. */
+.seccion-titulo h2 {
+    font: 800 clamp(50px, 10vw, 110px)/.7 var(--fuentesDecorativas);
+    /* Adapta el tamaño entre 50 y 110px según el ancho de la ventana.
+       El valor .7 establece una altura de línea compacta. */
+
+    letter-spacing: -.05em;
+    /* Acerca las letras para reforzar el aspecto gráfico del título. */
+
+    text-align: right;
+    /* Alinea el texto a la derecha, independientemente de su contenedor. */
+
+    margin: 0;
+    /* Elimina el margen predeterminado del h2. */
+}
+
+/* Convierte el texto en letras sin relleno y con contorno blanco. */
+.seccion-titulo em {
+    font-style: italic;
+    /* Conserva la apariencia inclinada propia de em. */
+
+    color: transparent;
+    /* Hace transparente el relleno de las letras. */
+
+    -webkit-text-stroke: 1.5px var(--blanco);
+    /* Dibuja un contorno blanco de 1,5px alrededor de las letras. */
+}
+
+
     /*-----------------------------*/
 
     /* PORTADA */
@@ -409,6 +469,74 @@ main {
 
     /* PROYECTOS */
 
+    /* Contenedor que agrupa todas las tarjetas de proyectos. */
+    .proyectos-lista {
+        display: grid;
+        gap: 5px;
+        max-width: 1000px;
+    }
+
+    /* Estructura visual de cada tarjeta de proyecto. */
+    .proyectos-tarjeta-proyecto {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        align-items: center;
+        padding: 20px 20px;
+        border-top: 1px solid var(--bordes);
+        /* Separa visualmente las tarjetas mediante una línea superior. */
+        background: linear-gradient(90deg, rgba(0, 14, 70, .30), rgba(0, 20, 100, .05));
+        /* Crea un degradado horizontal: más oscuro a la izquierda y más suave a la derecha. */
+        clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0 100%);
+        transition: .25s;
+
+        cursor: pointer;
+        /* Indica que las tarjetas son elementos interactivos. */
+
+    }
+    /* Añade una línea inferior a la última tarjeta para cerrar el listado. */
+    .proyectos-tarjeta-proyecto:last-child {
+        border-bottom: 1px solid var(--bordes)
+    }
+    /* Efecto al enfocar la tarjeta . */
+    .proyectos-tarjeta-proyecto:hover,
+    .proyectos-tarjeta-proyecto:focus-visible {
+        background: var(--blanco);
+        color: var(--azul-indigo);
+        transform: translateX(10px)
+    }
+    /* Número identificador de cada proyecto. */
+    .proyectos-tarjeta-numero {
+        font: 700 15px var(--fuentesDecorativas);
+        opacity: .75
+    }
+    /* Texto secundario de la tarjeta: categoría, tecnología o tipo de proyecto. */
+    .proyectos-tarjeta-info p {
+        font: 600 10px var(--fuentesDecorativas);
+        letter-spacing: .2em;
+        margin: 0 0 5px;
+        opacity: .7
+    }
+    /* Nombre principal del proyecto. */
+    .proyectos-tarjeta-info h3 {
+        font: 800 30px var(--fuentesDecorativas);
+        letter-spacing: .05em;
+        margin: 0
+    }
+    /* Información complementaria del proyecto. */
+    .proyectos-tarjeta-info span {
+        font-size: 10px;
+        opacity: .65
+    }
+    /* Elemento decorativo situado en la esquina inferior derecha de la pantalla. */
+    .proyectos-decoracion {
+        position: absolute;
+        right: 10vw;
+        bottom: 10vh;
+        text-align: right;
+        font: 600 10px var(--fuentesDecorativas);
+        letter-spacing: .15em;
+        opacity: .7
+    }
     /*-----------------------------*/
 
     /* SOBRE MÍ */
