@@ -6,10 +6,10 @@
     /*Color Principal:  contraste y profundidad*/
     --azul: rgb(7, 91, 208);
     /*Color Principal:  fondos, superficies y degradados*/
-    --azul-cielo: rgb(21, 159, 224);
-    /*Color Secundario*/
     --azul-cian: rgb(25, 189, 242);
     /*Color Principal:  énfasis*/
+    --azul-cielo: rgb(21, 159, 224);
+    /*Color Secundario*/
     --blanco: rgb(245, 248, 255);
     /*Color Principal:  texto*/
 
@@ -31,7 +31,7 @@ body{
     color: var(--blanco);
     font-family: var(--fuentesLectura);
     background: var(--azul);
-    overflow: hidden
+    /*overflow: hidden*/
 }
 /*---------------------------------------------------------------*/
 
@@ -48,7 +48,7 @@ body{
     border-bottom: 1px solid var(--bordes);
     z-index: 10;
     backdrop-filter: blur(12px);
-    background: linear-gradient(180deg, rgba(0, 15, 80, .3), transparent)
+    background: linear-gradient(180deg, var(--azul-cielo), transparent)
 }
 
 .encabezado-logo {
@@ -115,4 +115,43 @@ body{
     margin: 0 7px;
     opacity: .4;
 }
+/*---------------------------------------------------------------*/
+
+/* PIE DE PÁGINA */
+.pie-pagina {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    border-top: 1px solid var(--bordes);
+    padding: 0 42px;
+    justify-content: space-between;
+    font: 600 10px var(--fuentesDecorativas);
+    letter-spacing: .15em;
+    opacity: .85;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+    background: linear-gradient(0deg, var(--azul-oscuro), transparent)
+}
+/*---------------------------------------------------------------*/
+
+/* NAVEGACIÓN */
+
+/**/
+
+/*---------------------------------------------------------------*/
+
+
+
+/* SECCIONES */
+
+/*---------------------------------------------------------------*/
+
+
+
+/**/
+
 /*---------------------------------------------------------------*/
