@@ -1,0 +1,701 @@
+/* Paleta de color y fuentes */
+:root {
+    --azul-oscuro: rgb(6, 17, 44);
+    /*Color Secundario*/
+    --azul-indigo: rgb(8, 0, 168);
+    /*Color Principal: contraste y profundidad*/
+    --azul: rgb(7, 91, 208);
+    /*Color Principal: fondos, superficies y degradados*/
+    --azul-cian: rgb(25, 189, 242);
+    /*Color Principal: énfasis*/
+    --azul-cielo: rgb(21, 159, 224);
+    /*Color Secundario*/
+    --blanco: rgb(245, 248, 255);
+    /*Color Principal: texto*/
+
+    --bordes: rgba(255, 255, 255, .28);
+    /*Color para efecto visual: bordes de elementos con cierta transparencia*/
+    --translucido: rgba(3, 18, 74, .34);
+    /*Color para efecto visual: dar translucidez/transparencia al fondo de los elementos*/
+    --sombras: 0 20px 70px rgba(0, 0, 40, .28);
+    /*Color para efecto visual: crear efecto sombra entre el fondo de la página y los elementos*/
+
+    --fuentesDecorativas: 'Barlow Condensed', Impact, sans-serif;
+    --fuentesLectura: Inter, system-ui, sans-serif;
+}
+/*---------------------------------------------------------------*/
+
+/* El ancho y alto declarados incluyen el relleno y el borde; facilita calcular tamaños. */
+* {
+    box-sizing: border-box;
+}
+/*---------------------------------------------------------------*/
+
+/* CUERPO */
+/* Estilos globales de la página. overflow: hidden evita el scroll general; las secciones gestionan su propio desplazamiento. */
+body {
+    margin: 0;
+    font-family: var(--fuentesLectura);
+    color: var(--blanco);
+    background: var(--azul);
+    overflow: hidden; /* El scroll global se desactiva porque cada .pantalla controla el suyo. */
+}
+/*---------------------------------------------------------------*/
+
+/* ENCABEZADO */
+/* Barra superior fija; flex alinea el logo y el estado en una misma fila. */
+.encabezado {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 90px;
+    padding: 20px 40px; /* Espacio interior: 20px verticales y 40px laterales. */
+    background: linear-gradient(180deg, var(--azul-cielo), transparent); /* El color se desvanece hacia abajo. */
+    border-bottom: 1px solid var(--bordes);
+    backdrop-filter: blur(10px); /* Desenfoca el contenido que pasa por detrás de la barra. */
+    z-index: 10; /* Mantiene la barra por encima de las secciones. */
+}
+
+.encabezado-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Separación entre el marco del logo y su texto. */
+    padding: 0;
+    text-align: left;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+/* clip-path recorta la esquina inferior derecha del marco del logo. */
+.encabezado-logo-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: var(--azul-oscuro);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+    flex-shrink: 0; /* Evita que el marco se encoja si el encabezado tiene poco espacio. */
+}
+
+/* contain conserva la proporción de la imagen dentro del marco. */
+.encabezado-logo-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.encabezado-logo-desc {
+    display: flex;
+    flex-direction: column; /* Apila el nombre y la descripción del portfolio. */
+    font: 700 15px var(--fuentesDecorativas);
+    color: var(--blanco);
+}
+
+.encabezado-logo-desc small {
+    font: 500 10px var(--fuentesLectura);
+    /* La fuente de lectura diferencia esta etiqueta de los textos decorativos de la marca. */
+    letter-spacing: .5em; /* Separación amplia para diferenciar la etiqueta secundaria. */
+    opacity: .8;
+}
+
+/* margin-left: auto empuja el estado hasta el extremo derecho del encabezado. */
+.encabezado-estado {
+    font: 600 10px var(--fuentesDecorativas);
+    letter-spacing: .15em;
+    opacity: .9;
+    margin-left: auto; /* Consume el espacio libre y empuja el estado al extremo derecho. */
+}
+
+.encabezado-estado-bola-verde {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: rgb(103, 247, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgb(103, 247, 255); /* Crea el halo luminoso alrededor del indicador. */
+    margin-right: 7px;
+}
+
+.encabezado-estado-separador {
+    margin: 0 10px;
+    opacity: .5;
+}
+/*---------------------------------------------------------------*/
+
+/* PIE DE PÁGINA */
+/* Barra inferior fija; space-between separa el texto izquierdo del reloj derecho. */
+.pie-pagina {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    padding: 0 40px;
+    font: 600 10px var(--fuentesDecorativas);
+    letter-spacing: .15em;
+    background: linear-gradient(0deg, var(--azul-oscuro), transparent); /* Degradado oscuro en la parte inferior. */
+    border-top: 1px solid var(--bordes);
+    opacity: .85;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+/*---------------------------------------------------------------*/
+
+/* NAVEGACIÓN */
+/* Menú lateral centrado verticalmente mediante top: 50% y translateY(-50%). */
+.navegacion {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    top: 50%;
+    left: 35px;
+    width: 150px;
+    transform: translateY(-50%); /* Corrige el top: 50% usando la mitad de la altura del propio menú. */
+    z-index: 10;
+}
+
+.navegacion-etiqueta {
+    margin: 0 0 5px 10px;
+    font: 700 10px var(--fuentesDecorativas);
+    letter-spacing: .3em;
+    opacity: .8;
+}
+
+/* Grid reserva una columna para el número y otra para el nombre de la sección. */
+.navegacion-elemento {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30px 1fr; /* Columna fija para el número y otra flexible para el nombre. */
+    position: relative; /* Referencia para colocar la marca ::before dentro del botón. */
+    padding: 10px 15px;
+    text-align: left;
+    color: var(--blanco);
+    background: var(--translucido);
+    border: 0;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); /* Recorta la esquina inferior derecha. */
+    transition: .20s ease; /* Suaviza los cambios de aspecto durante 0,2 segundos. */
+    cursor: pointer;
+}
+
+.navegacion-elemento span {
+    font: 600 10px var(--fuentesDecorativas);
+    opacity: .75;
+}
+
+.navegacion-elemento b {
+    font: 700 15px var(--fuentesDecorativas);
+    letter-spacing: .05em;
+}
+
+/* El botón cambia de aspecto al pasar el cursor o recibir la clase foco. */
+.navegacion-elemento:hover, .navegacion-elemento.foco {
+    color: var(--azul-indigo);
+    background: var(--blanco);
+    transform: translateX(10px); /* Desplaza el botón para reforzar el estado seleccionado. */
+}
+
+.navegacion-elemento::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    background: var(--blanco);
+    transform: scaleY(0.2); /* Reduce la marca al 20% de su altura; queda como acento corto. */
+    content: ""; /* Necesario para que el pseudo-elemento se genere. */
+}
+/*---------------------------------------------------------------*/
+
+/* PANTALLAS */
+/* Contenedor de referencia para las pantallas posicionadas de forma absoluta. */
+main {
+    position: relative;
+    height: 100vh; /* Ocupa una altura equivalente a la ventana del navegador. */
+}
+
+/* Todas las pantallas comparten posición, espaciado y estado inicial oculto. */
+.pantalla {
+    position: absolute; /* Permite superponer las pantallas en la misma zona. */
+    inset: 90px 0 50px 0; /* Deja libre el espacio del encabezado (90px) y del pie (50px). */
+    padding: 10vh 10vw 5vh 25vw; /* Espaciado interior adaptable: arriba, derecha, abajo e izquierda. */
+    opacity: 0;
+    overflow-x: hidden;
+    overflow-y: auto; /* Si el contenido supera la altura disponible, se desplaza verticalmente. */
+    overscroll-behavior: contain; /* Evita que ese desplazamiento se propague a la página exterior. */
+    transform: translateX(10%); /* Posición inicial ligeramente desplazada hacia la derecha. */
+    transition:
+            opacity .5s ease,
+            transform .65s cubic-bezier(.2, .8, .2, 1),
+            visibility .5s;
+            /* Anima opacidad, desplazamiento/escala (transform) y visibilidad; esta última se retrasa para no cortar el fundido. */
+
+    visibility: hidden;      /* ARREGLO BUG: estado inicial oculto */
+    pointer-events: none;    /* ARREGLO BUG: no intercepta clics */
+}
+
+/* La clase foco muestra la pantalla seleccionada. */
+.pantalla.foco {
+    opacity: 1;
+    transform: none; /* Elimina el desplazamiento inicial de la pantalla activa. */
+    visibility: visible;
+
+    pointer-events: auto;    /* ARREGLO BUG: solo la activa recibe clics */
+}
+
+/* TÍTULOS DE LAS SECCIONES */
+/* Reglas específicas para las cabeceras reutilizables de Proyectos, Sobre mí y Contacto. */
+.seccion-titulo {
+    display: flex;
+    /* Coloca la etiqueta y el título en una misma fila. */
+
+    justify-content: space-between;
+    /* Sitúa ambos elementos en extremos opuestos. */
+
+    align-items: flex-end;
+    /* Alinea los elementos por su borde inferior. */
+
+    gap: 30px;
+    /* Mantiene una separación mínima entre ambos elementos. */
+
+    margin-bottom: 30px;
+    /* Separa la cabecera del contenido que aparece debajo. */
+
+    max-width: 1000px;
+    /* Evita que la cabecera se extienda demasiado en pantallas anchas. */
+}
+
+/* Etiqueta secundaria de la cabecera, por ejemplo, un número o una categoría. */
+.seccion-titulo > span {
+    font: 700 10px var(--fuentesDecorativas);
+    letter-spacing: .2em;
+    opacity: .65;
+    /* Su tamaño reducido y su menor opacidad la mantienen en segundo plano. */
+}
+
+/* Título principal de la sección, por ejemplo, PROYECTOS. */
+.seccion-titulo h2 {
+    font: 800 clamp(50px, 10vw, 110px)/.7 var(--fuentesDecorativas);
+    /* Adapta el tamaño entre 50 y 110px según el ancho de la ventana.
+       El valor .7 establece una altura de línea compacta. */
+
+    letter-spacing: -.05em;
+    /* Acerca las letras para reforzar el aspecto gráfico del título. */
+
+    text-align: right;
+    /* Alinea el texto a la derecha, independientemente de su contenedor. */
+
+    margin: 0;
+    /* Elimina el margen predeterminado del h2. */
+}
+
+/* Convierte el texto en letras sin relleno y con contorno blanco. */
+.seccion-titulo em {
+    font-style: italic;
+    /* Conserva la apariencia inclinada propia de em. */
+
+    color: transparent;
+    /* Hace transparente el relleno de las letras. */
+
+    -webkit-text-stroke: 1.5px var(--blanco);
+    /* Dibuja un contorno blanco de 1,5px alrededor de las letras. */
+}
+
+    /*-----------------------------*/
+
+    /* PORTADA */
+    /* Limita el ancho del bloque principal de texto. */
+    .portada {
+        max-width: 700px;
+        padding-top: 5vh; /* Separa el bloque del borde superior de la zona de contenido. */
+    }
+
+    .portada-antetitulo {
+        margin: 0 0 20px;
+        font: 600 15px var(--fuentesDecorativas);
+        letter-spacing: .2em;
+        opacity: .8;
+    }
+
+    /* clamp(min, preferido, max) adapta el título al ancho de la ventana sin extremos excesivos. */
+    .portada h1 {
+        margin: 0;
+        font: 800 clamp(75px, 10vw, 170px)/.8 var(--fuentesDecorativas); /* Tamaño adaptable entre 75 y 170px; .8 fija una línea compacta. */
+        letter-spacing: -.05em; /* Acerca las letras para dar más fuerza al título. */
+        text-transform: uppercase;
+        text-shadow: 10px 10px 0 rgba(0, 0, 80, .10); /* Sombra discreta desplazada hacia abajo y a la derecha. */
+    }
+
+    /* Convierte el texto en letras sin relleno y con contorno blanco. */
+    .portada-nombre-decoracion {
+        -webkit-text-stroke: 2px var(--blanco);
+        color: transparent;
+    }
+
+    .portada-subtitulo {
+        margin: 30px 0 15px;
+        font: 600 clamp(15px, 2vw, 25px) var(--fuentesDecorativas);
+        letter-spacing: .15em;
+    }
+
+    .portada-introduccion {
+        max-width: 500px;
+        font-size: 15px;
+        line-height: 1.5; /* Mejora la separación entre líneas para facilitar la lectura. */
+        opacity: .9;
+    }
+
+    .portada-boton-accion {
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 15px;
+        font: 800 13px var(--fuentesDecorativas);
+        letter-spacing: .08em;
+        color: var(--azul-indigo);
+        background: var(--blanco);
+        border: 1px solid rgba(255, 255, 255, .7);
+        clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+        margin-top: 10px; /* Separa el botón del texto introductorio. */
+
+        cursor: pointer;
+    }
+
+    /* Bloque anclado a la esquina inferior derecha de la pantalla de portada. */
+    .portada-datos {
+        display: grid;
+        gap: 10px;
+        position: absolute; /* Se coloca independientemente del bloque principal de texto. */
+        right: 10vw;
+        bottom: 10vh;
+        width: 200px; /* Mantiene compacto el bloque de datos en la esquina inferior derecha. */
+    }
+
+    .portada-datos div {
+        display: flex;
+        justify-content: space-between; /* Coloca la etiqueta a la izquierda y el valor a la derecha. */
+        gap: 10px; /* Evita que ambos textos queden pegados. */
+        font: 500 10px var(--fuentesDecorativas);
+        letter-spacing: .1em;
+        border-bottom: 1px solid var(--bordes);
+        padding-bottom: 5px;
+    }
+
+    .portada-datos strong {
+        font-weight: 700;
+    }
+    /* Mensaje en la parte inferior de la portada que invita a explorar la página */
+    .portada-indicacion {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: absolute; /* Ancla la indicación a la zona inferior de la portada. */
+        bottom: 5vh;
+        left: 25vw;
+        font: 600 10px var(--fuentesDecorativas);
+        letter-spacing: .15em;
+        opacity: .65;
+    }
+
+    .portada-indicacion span {
+        display: block;
+        width: 35px;
+        height: 1px;
+        background: var(--blanco);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        50% {
+            width: 60px;
+            opacity: .35
+        }
+    }
+
+    /* ESFERA DECORATIVA DE LA PORTADA */
+    .portada-esfera-decoracion {
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 20%;
+        right: 5vw;
+        width: min(40vw, 500px); /* Ocupa el 40% del ancho, pero nunca supera los 500px. */
+        aspect-ratio: 1; /* Mantiene ancho y alto iguales para conservar la forma circular. */
+        background: radial-gradient(circle, rgba(25, 189, 242, .2), transparent 60%); /* Brillo cian que se desvanece hacia fuera. */
+        border: 1px solid rgba(255, 255, 255, .30);
+        border-radius: 50%;
+        box-shadow: inset 0 0 80px rgba(25, 189, 242, .05), 0 0 100px rgba(8, 0, 168, .15); /* Brillo interior y halo exterior. */
+        pointer-events: none; /* La decoración no intercepta clics ni otros eventos del ratón. */
+        z-index: 0; /* Mantiene la esfera en un nivel de fondo. */
+    }
+
+    /* ::before y ::after dibujan los círculos interiores sin tocar el HTML. */
+    .portada-esfera-decoracion::before,
+    .portada-esfera-decoracion::after {
+        position: absolute;
+        border: 1px solid rgba(255, 255, 255, .15);
+        border-radius: 50%;
+        content: ""; /* Genera los círculos decorativos sin añadir elementos al HTML. */
+    }
+
+    .portada-esfera-decoracion::before {
+        inset: 10%; /* Deja un margen del 10% en cada lado para formar el círculo interior mediano. */
+    }
+
+    .portada-esfera-decoracion::after {
+        inset: 30%; /* Deja un margen del 30% en cada lado para formar el círculo interior pequeño. */
+    }
+
+    /* Ocupa la esfera y mantiene el logo por encima de los círculos decorativos. */
+    .portada-esfera-decoracion span {
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* Sitúa el logotipo por delante de los círculos decorativos. */
+    }
+
+    .portada-esfera-decoracion img {
+        display: block;
+        width: 50%;
+        height: 50%; /* La imagen ocupa la mitad del espacio de la esfera. */
+        opacity: .25;
+        object-fit: contain;
+    }
+
+    /*-----------------------------*/
+
+    /* PROYECTOS */
+
+    /* Contenedor que agrupa todas las tarjetas de proyectos. */
+    .proyectos-lista {
+        display: grid;
+        gap: 5px;
+        max-width: 1000px;
+    }
+
+    /* Estructura visual de cada tarjeta de proyecto. */
+    .proyectos-tarjeta-proyecto {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        align-items: center;
+        padding: 20px 20px;
+        border-top: 1px solid var(--bordes);
+        /* Separa visualmente las tarjetas mediante una línea superior. */
+        background: linear-gradient(90deg, rgba(0, 14, 70, .30), rgba(0, 20, 100, .05));
+        /* Crea un degradado horizontal: más oscuro a la izquierda y más suave a la derecha. */
+        clip-path: polygon(0 0, 100% 0, 97.5% 100%, 0 100%);
+        transition: .25s;
+
+        cursor: pointer;
+        /* Indica que las tarjetas son elementos interactivos. */
+
+    }
+    /* Añade una línea inferior a la última tarjeta para cerrar el listado. */
+    .proyectos-tarjeta-proyecto:last-child {
+        border-bottom: 1px solid var(--bordes)
+    }
+    /* Efecto al enfocar la tarjeta . */
+    .proyectos-tarjeta-proyecto:hover,
+    .proyectos-tarjeta-proyecto:focus-visible {
+        background: var(--blanco);
+        color: var(--azul-indigo);
+        transform: translateX(10px)
+    }
+    /* Número identificador de cada proyecto. */
+    .proyectos-tarjeta-numero {
+        font: 700 15px var(--fuentesDecorativas);
+        opacity: .75
+    }
+    /* Texto secundario de la tarjeta: categoría, tecnología o tipo de proyecto. */
+    .proyectos-tarjeta-info p {
+        font: 600 10px var(--fuentesDecorativas);
+        letter-spacing: .2em;
+        margin: 0 0 5px;
+        opacity: .7
+    }
+    /* Nombre principal del proyecto. */
+    .proyectos-tarjeta-info h3 {
+        font: 800 30px var(--fuentesDecorativas);
+        letter-spacing: .05em;
+        margin: 0
+    }
+    /* Información complementaria del proyecto. */
+    .proyectos-tarjeta-info span {
+        font-size: 10px;
+        opacity: .65
+    }
+    /* Elemento decorativo situado en la esquina inferior derecha de la pantalla. */
+    .proyectos-decoracion {
+        position: absolute;
+        right: 10vw;
+        bottom: 10vh;
+        text-align: right;
+        font: 600 10px var(--fuentesDecorativas);
+        letter-spacing: .15em;
+        opacity: .7
+    }
+    /*-----------------------------*/
+
+    /* SOBRE MÍ */
+
+    /* Distribución principal: tarjeta de perfil a la izquierda y datos personales a la derecha. */
+    .registro-contorno {
+        display: grid;
+        grid-template-columns: 300px minmax(300px, 600px);
+        align-items: center;
+        gap: 60px; /* Separa ambas columnas para que la tarjeta y el texto no queden demasiado juntos. */
+    }
+
+    /* TARJETA DE PERFIL */
+    /* Marco visual que contiene la imagen y el resumen de información personal. */
+    .registro-perfil {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Agrupa el contenido flexible hacia la parte inferior de la tarjeta. */
+        position: relative; /* Sirve de referencia para posicionar la decoración de .registro-foto. */
+        height: 350px;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, .45);
+        background: linear-gradient(135deg, rgba(0, 15, 80, .4), rgba(30, 212, 255, .1)); /* Combina una zona azul oscura con otra cian translúcida. */
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); /* Recorta la esquina inferior derecha para mantener el lenguaje geométrico del diseño. */
+    }
+
+    /* Zona reservada para la imagen o el elemento gráfico del perfil. */
+    .registro-foto {
+        display: grid;
+        place-items: center; /* Centra el contenido tanto horizontal como verticalmente. */
+        position: absolute;
+        inset: 35px; /* Mantiene la decoración separada 35px de los cuatro bordes de la tarjeta. */
+        font: 800 170px var(--fuentesDecorativas);
+        color: transparent; /* Deja visible únicamente el contorno del texto, si lo hubiera. */
+        -webkit-text-stroke: 1px rgba(255, 255, 255, .35);
+    }
+
+    /* Imagen del perfil: se adapta al espacio disponible sin deformarse. */
+    .registro-foto img {
+        display: block;
+        width: 70%;
+        height: 70%;
+        object-fit: contain; /* Conserva la proporción original aunque la imagen no sea cuadrada. */
+        opacity: .7; /* Reduce la intensidad de la imagen para integrarla en el diseño. */
+    }
+
+    /* RESUMEN DEL PERFIL */
+
+    /* Distribuye las etiquetas y sus valores en dos columnas. */
+    .registro-resumen {
+        display: grid;
+        position: relative;
+        grid-template-columns: 1fr 1fr; /* Reserva el mismo espacio para las etiquetas y sus valores. */
+        gap: 3px 20px; /* Aplica 3px entre filas y 20px entre columnas. */
+        font: 600 11px var(--fuentesDecorativas);
+        letter-spacing: .1em;
+    }
+
+    /* Alinea los valores a la derecha para distinguirlos de sus etiquetas. */
+    .registro-resumen strong {
+        text-align: right;
+    }
+
+    /* INFORMACIÓN PERSONAL */
+
+    /* Limita la anchura del texto para evitar líneas excesivamente largas. */
+    .registro-datos {
+        max-width: 560px;
+    }
+
+    /* Nombre o encabezado destacado de la presentación personal. */
+    .registro-datos h3 {
+        font: 800 50px/.8 var(--fuentesDecorativas); /* La altura de línea compacta permite un título visualmente más contundente. */
+        margin: 10px 0 25px; /* Separa el título del contenido anterior y del texto que aparece debajo. */
+    }
+
+    /* Mantiene la inclinación de los fragmentos destacados del título. */
+    .registro-datos h3 em {
+        font-style: italic;
+    }
+
+    /* Texto descriptivo, excluyendo el párrafo reservado para el título de registro. */
+    .registro-datos > p:not(.registro-titulo) {
+        line-height: 1.5; /* Mejora la legibilidad al separar las líneas del texto. */
+        opacity: .8; /* Reduce ligeramente el contraste del texto secundario. */
+    }
+
+    /* HABILIDADES */
+
+    /* Organiza las etiquetas de habilidades en filas que se adaptan al espacio disponible. */
+    .registro-habilidades {
+        display: flex;
+        flex-wrap: wrap; /* Permite que las etiquetas pasen a otra fila si no caben. */
+        gap: 5px;
+        margin-top: 25px; /* Separa las habilidades del texto descriptivo. */
+    }
+
+    /* Apariencia de cada etiqueta de tecnología o habilidad. */
+    .registro-habilidades span {
+        padding: 7px 10px;
+        font: 700 10px var(--fuentesDecorativas);
+        letter-spacing: .1em;
+        border: 1px solid var(--bordes); /* Delimita cada habilidad sin añadir un fondo opaco. */
+    }
+    /*-----------------------------*/
+
+    /* CONTACTO */
+    .contacto-contorno {
+        max-width: 750px;
+        margin-top: 10vh; /* Separa el bloque de contacto de la parte superior de la sección. */
+    }
+    /* Texto introductorio que acompaña a los datos de contacto. */
+    .contacto-contorno > p {
+        max-width: 530px; /* Evita que el párrafo ocupe demasiado ancho y dificulte la lectura. */
+        font-size: 20px;
+        line-height: 1.5; /* Aumenta la separación entre líneas para mejorar la legibilidad. */
+        opacity: .8; /* Reduce ligeramente el protagonismo del texto frente al correo. */
+    }
+
+    /* Correo principal: destaca como elemento central y separa visualmente el resto de enlaces. */
+    .contacto-email {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Coloca el correo y su posible icono en extremos opuestos. */
+
+        font: 800 clamp(35px, 5vw, 80px)/.9 var(--fuentesDecorativas);
+        /* Adapta el tamaño de letra al ancho de la ventana, con límites de 35 y 80px. */
+
+        letter-spacing: -.02em;
+
+        padding: 15px 0; /* Deja espacio vertical alrededor del correo sin añadir margen lateral. */
+        border-bottom: 2px solid var(--blanco); /* Subraya el correo. */
+    }
+
+    /* Agrupa los enlaces secundarios y establece la separación entre ellos. */
+    .contacto-enlaces {
+        display: flex;
+        gap: 35px; /* Mantiene una distancia uniforme entre los enlaces. */
+        margin-top: 25px; /* Separa los enlaces del correo principal. */
+    }
+
+    /* Mantiene los enlaces secundarios dentro de la jerarquía tipográfica decorativa. */
+    .contacto-enlaces a {
+        font: 700 15px var(--fuentesDecorativas);
+        letter-spacing: .15em;
+    }
+
+    /* Estilo general de los enlaces para conservar el contraste con el fondo azul. */
+    a {
+        color: var(--blanco);
+        text-decoration: none; /* Elimina el subrayado predeterminado del navegador. */
+    }
+    /*---------------------------------------------------------------*/
