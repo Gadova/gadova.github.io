@@ -217,8 +217,8 @@ body {
 }
 /*---------------------------------------------------------------*/
 
-/* SECCIONES */
-/* Contenedor de referencia para las secciones posicionadas de forma absoluta. */
+/* PANTALLAS */
+/* Contenedor de referencia para las pantallas posicionadas de forma absoluta. */
 main {
     position: relative;
     height: 100vh; /* Ocupa una altura equivalente a la ventana del navegador. */
@@ -234,8 +234,14 @@ main {
     overflow-y: auto; /* Si el contenido supera la altura disponible, se desplaza verticalmente. */
     overscroll-behavior: contain; /* Evita que ese desplazamiento se propague a la página exterior. */
     transform: translateX(10%); /* Posición inicial ligeramente desplazada hacia la derecha. */
-    transition: opacity .5s ease, visibility .5s; /* Solo se animan opacidad y visibilidad; el desplazamiento no tiene transición. */
-    visibility: hidden; /* Oculta la pantalla y evita interactuar con su contenido. */
+    transition:
+            opacity .5s ease,
+            transform .65s cubic-bezier(.2, .8, .2, 1),
+            visibility .5s;
+            /* Anima opacidad, desplazamiento/escala (transform) y visibilidad; esta última se retrasa para no cortar el fundido. */
+
+    visibility: hidden;      /* ARREGLO BUG: estado inicial oculto */
+    pointer-events: none;    /* ARREGLO BUG: no intercepta clics */
 }
 
 /* La clase foco muestra la pantalla seleccionada. */
@@ -243,6 +249,8 @@ main {
     opacity: 1;
     transform: none; /* Elimina el desplazamiento inicial de la pantalla activa. */
     visibility: visible;
+
+    pointer-events: auto;    /* ARREGLO BUG: solo la activa recibe clics */
 }
 
 /* TÍTULOS DE LAS SECCIONES */
@@ -303,7 +311,6 @@ main {
     /* Dibuja un contorno blanco de 1,5px alrededor de las letras. */
 }
 
-
     /*-----------------------------*/
 
     /* PORTADA */
@@ -360,6 +367,8 @@ main {
         border: 1px solid rgba(255, 255, 255, .7);
         clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
         margin-top: 10px; /* Separa el botón del texto introductorio. */
+
+        cursor: pointer;
     }
 
     /* Bloque anclado a la esquina inferior derecha de la pantalla de portada. */
