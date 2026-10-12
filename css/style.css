@@ -644,5 +644,49 @@ main {
     /*-----------------------------*/
 
     /* CONTACTO */
+    .contacto-contorno {
+        max-width: 750px;
+        margin-top: 10vh; /* Separa el bloque de contacto de la parte superior de la sección. */
+    }
+    /* Texto introductorio que acompaña a los datos de contacto. */
+    .contacto-contorno > p {
+        max-width: 530px; /* Evita que el párrafo ocupe demasiado ancho y dificulte la lectura. */
+        font-size: 20px;
+        line-height: 1.5; /* Aumenta la separación entre líneas para mejorar la legibilidad. */
+        opacity: .8; /* Reduce ligeramente el protagonismo del texto frente al correo. */
+    }
 
+    /* Correo principal: destaca como elemento central y separa visualmente el resto de enlaces. */
+    .contacto-email {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Coloca el correo y su posible icono en extremos opuestos. */
+
+        font: 800 clamp(35px, 5vw, 80px)/.9 var(--fuentesDecorativas);
+        /* Adapta el tamaño de letra al ancho de la ventana, con límites de 35 y 80px. */
+
+        letter-spacing: -.02em;
+
+        padding: 15px 0; /* Deja espacio vertical alrededor del correo sin añadir margen lateral. */
+        border-bottom: 2px solid var(--blanco); /* Subraya el correo. */
+    }
+
+    /* Agrupa los enlaces secundarios y establece la separación entre ellos. */
+    .contacto-enlaces {
+        display: flex;
+        gap: 35px; /* Mantiene una distancia uniforme entre los enlaces. */
+        margin-top: 25px; /* Separa los enlaces del correo principal. */
+    }
+
+    /* Mantiene los enlaces secundarios dentro de la jerarquía tipográfica decorativa. */
+    .contacto-enlaces a {
+        font: 700 15px var(--fuentesDecorativas);
+        letter-spacing: .15em;
+    }
+
+    /* Estilo general de los enlaces para conservar el contraste con el fondo azul. */
+    a {
+        color: var(--blanco);
+        text-decoration: none; /* Elimina el subrayado predeterminado del navegador. */
+    }
     /*---------------------------------------------------------------*/
