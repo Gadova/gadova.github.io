@@ -3,22 +3,22 @@
     --azul-oscuro: rgb(6, 17, 44);
     /*Color Secundario*/
     --azul-indigo: rgb(8, 0, 168);
-    /*Color Principal:  contraste y profundidad*/
+    /*Color Principal: contraste y profundidad*/
     --azul: rgb(7, 91, 208);
-    /*Color Principal:  fondos, superficies y degradados*/
+    /*Color Principal: fondos, superficies y degradados*/
     --azul-cian: rgb(25, 189, 242);
-    /*Color Principal:  énfasis*/
+    /*Color Principal: énfasis*/
     --azul-cielo: rgb(21, 159, 224);
     /*Color Secundario*/
     --blanco: rgb(245, 248, 255);
-    /*Color Principal:  texto*/
+    /*Color Principal: texto*/
 
     --bordes: rgba(255, 255, 255, .28);
-    /*Color para efecto visual*/
+    /*Color para efecto visual: bordes de elementos con cierta transparencia*/
     --translucido: rgba(3, 18, 74, .34);
-    /*Color para efecto visual*/
+    /*Color para efecto visual: dar translucidez/transparencia al fondo de los elementos*/
     --sombras: 0 20px 70px rgba(0, 0, 40, .28);
-    /*Color para efecto visual*/
+    /*Color para efecto visual: crear efecto sombra entre el fondo de la página y los elementos*/
 
     --fuentesDecorativas: 'Barlow Condensed', Impact, sans-serif;
     --fuentesLectura: Inter, system-ui, sans-serif;
@@ -43,22 +43,24 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    height: 88px;
-    padding: 18px 42px;
+    height: 90px;
+    padding: 20px 40px;
     border-bottom: 1px solid var(--bordes);
     z-index: 10;
-    backdrop-filter: blur(12px);
-    background: linear-gradient(180deg, var(--azul-cielo), transparent)
+    backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, var(--azul-cielo), transparent );
 }
 
 .encabezado-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     background: none;
     border: 0;
     padding: 0;
-    text-align: left
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
 }
 
 .encabezado-logo-img {
@@ -69,11 +71,11 @@ body{
     height: 60px;
     flex-shrink: 0;
     background: var(--azul-oscuro);
-    clip-path: polygon(0 0, 100% 0, 100% 78%, 76% 100%, 0 100%);
-    overflow: hidden;
+    clip-path: polygon( 0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
 }
 
 .encabezado-logo-img img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -83,22 +85,20 @@ body{
     display: flex;
     flex-direction: column;
     color: var(--blanco);
-    font: 700 16px var(--fuentesDecorativas);
-    letter-spacing: .08em
+    font: 700 15px var(--fuentesDecorativas);
 }
 
 .encabezado-logo-desc small {
-    margin-top: 2px;
     font: 500 10px var(--fuentesLectura);
-    letter-spacing: .18em;
-    opacity: .7;
+    letter-spacing: .5em;
+    opacity: .8;
 }
 
 .encabezado-estado {
     margin-left: auto;
-    font: 600 11px var(--fuentesDecorativas);
-    letter-spacing: .14em;
-    opacity: .9
+    font: 600 10px var(--fuentesDecorativas);
+    letter-spacing: .15em;
+    opacity: .9;
 }
 
 .encabezado-estado-bola-verde {
@@ -108,12 +108,12 @@ body{
     margin-right: 7px;
     background: rgb(103, 247, 255);
     border-radius: 50%;
-    box-shadow: 0 0 14px rgb(103, 247, 255);
+    box-shadow: 0 0 15px rgb(103, 247, 255);
 }
 
 .encabezado-estado-separador {
-    margin: 0 7px;
-    opacity: .4;
+    margin: 0 10px;
+    opacity: .5;
 }
 /*---------------------------------------------------------------*/
 
@@ -126,32 +126,102 @@ body{
     left: 0;
     right: 0;
     height: 55px;
-    border-top: 1px solid var(--bordes);
-    padding: 0 42px;
+    padding: 0 40px;
     justify-content: space-between;
     font: 600 10px var(--fuentesDecorativas);
     letter-spacing: .15em;
     opacity: .85;
+    border-top: 1px solid var(--bordes);
     z-index: 10;
-    backdrop-filter: blur(12px);
-    background: linear-gradient(0deg, var(--azul-oscuro), transparent)
+    backdrop-filter: blur(10px);
+    background: linear-gradient(0deg, var(--azul-oscuro), transparent);
 }
+
 /*---------------------------------------------------------------*/
 
 /* NAVEGACIÓN */
+.navegacion {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 35px;
+    width: 150px;
+    gap: 5px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
 
-/**/
+.navegacion-etiqueta {
+    font: 700 10px var(--fuentesDecorativas);
+    letter-spacing: .3em;
+    opacity: .8;
+    margin: 0 0 5px 10px;
+}
+
+.navegacion-elemento {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+    position: relative;
+    text-align: left;
+    border: 0;
+    background: var(--translucido);
+    padding: 10px 15px;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+    transition: .20s ease;
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+.navegacion-elemento span {
+    font: 600 10px var(--fuentesDecorativas);
+    opacity: .75;
+}
+
+.navegacion-elemento b {
+    font: 700 15px var(--fuentesDecorativas);
+    letter-spacing: .05em;
+}
+
+.navegacion-elemento:hover,
+.navegacion-elemento.foco {
+    background: var(--blanco);
+    color: var(--azul-indigo);
+    transform: translateX(10px);
+}
+
+.navegacion-elemento::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--blanco);
+    transform: scaleY(0.2);
+    transition: widht 5s;
+}
 
 /*---------------------------------------------------------------*/
-
-
 
 /* SECCIONES */
 
+    /* Portada */
+
+    /*-----------------------------*/
+
+    /* Proyectos */
+
+    /*-----------------------------*/
+
+    /* Sobrre Mí */
+
+    /*-----------------------------*/
+
+    /* Contacto */
+
+    /*-----------------------------*/
+
 /*---------------------------------------------------------------*/
 
-
-
-/**/
-
-/*---------------------------------------------------------------*/
