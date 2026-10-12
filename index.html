@@ -12,64 +12,70 @@
 
 <body>
     <!-- ENCABEZADO -->
-    <header>
-        <button>
-            <span><img src="./assets/img/logo.png" alt="Logo"></span>
-            <span><strong>GADOVA</strong><small>PORTFOLIO / 2026</small></span>
+    <header class="encabezado">
+        <button class="logo">
+            <span class="logo-img"><img src="./assets/img/logo.png" alt="Logo"></span>
+            <span class="logo-desc"><strong>GADOVA</strong><small>PORTFOLIO / 2026</small></span>
         </button>
-        <div><span>[Bolita verde]</span><span> ONLINE </span><span> // </span> <span> READY </span></div>
+        <div class="estado"><span>[Bolita verde]</span><span> ONLINE </span><span> // </span> <span> READY </span></div>
     </header>
 
     <!-- NAVEGACIÓN -->
-    <aside>
-        <div>NAVEGACIÓN</div>
-        <button><span>01</span><b>INICIO</b></button>
-        <button><span>02</span><b>PROYECTOS</b></button>
-        <button><span>03</span><b>SOBRE MÍ</b></button>
-        <button><span>04</span><b>CONTACTO</b></button>
+    <aside class="navegacion">
+        <div class="navegacion-etiqueta">NAVEGACIÓN</div>
+        <button class="navegacion-elemento"><span>01</span><b>INICIO</b></button>
+        <button class="navegacion-elemento"><span>02</span><b>PROYECTOS</b></button>
+        <button class="navegacion-elemento"><span>03</span><b>SOBRE MÍ</b></button>
+        <button class="navegacion-elemento"><span>04</span><b>CONTACTO</b></button>
     </aside>
 
     <!-- SECCIONES -->
     <main>
         <!-- INICIO -->
-        <section>
-            <div>
-                <p>BIENVENIDOS A LA TERMINAL</p>
+        <section id="inicio" class="pantalla">
+            <div class="portada">
+                <p class="portada-antetitulo">BIENVENIDOS A LA TERMINAL</p>
                 <h1>GADOVA</h1>
-                <p>DESARROLLO · DISEÑO · SOFTWARE</p>
-                <p>Un portfolio con una estética acuática.</p>
-                <button><span>EXPLORAR PROYECTOS</span></button>
+                <p class="portada-subtitulo">DESARROLLO · DISEÑO · SOFTWARE</p>
+                <p class="portada-introduccion">Un portfolio con una estética acuática.</p>
+                <button class="portada-boton-accion"><span>EXPLORAR PROYECTOS</span></button>
             </div>
 
-            <div>
+            <div class="portada-datos">
                 <div><span>EN</span><strong>CONSTRUCCIÓN</strong></div>
                 <div><span>STACK</span><strong>JAVA / C# / JS</strong></div>
                 <div><span>UBICACIÓN</span><strong>ESPAÑA</strong></div>
             </div>
 
-            <div><span><img src="./assets/img/logo.png" alt="Logo_transparencia"></span></div>
-            <div><span></span> DESLIZAR HACIA ABAJO</div>
+            <div class="portada-esfera-decoracion">
+                <span>
+                    <img src="./assets/img/logo.png" alt="Logo_transparencia">
+                </span>
+            </div>
+            <div class="portada-indicacion">
+                <span></span> DESLIZAR HACIA ABAJO PARA EXPLORAR
+            </div>
         </section>
         <!-- PROYECTOS -->
-        <section>
-            <div>
+        <section id="proyectos" class="pantalla">
+            <div class="seccion-titulo">
                 <span>02 / PROYECTOS</span>
                 <h2>SELECCION<br><em>DE ARCHIVO</em></h2>
             </div>
 
-            <div>
-                <article>
-                    <div>01</div>
-                    <div>
+            <div class="proyectos-lista">
+                <article class="tarjeta-proyecto" tarjeta-proyecto="portfolio">
+                    <div class="tarjeta-numero">01</div>
+                    <div class="tarjeta-info">
                         <p>WEB</p>
                         <h3>ESTE PORTFOLIO</h3>
                         <span>HTML · CSS · JavaScript</span>
                     </div>
                 </article>
 
-                <article>
-                    <div>02</div>
-                    <div>
+                <article class="tarjeta-proyecto" tarjeta-proyecto="redOrbit">
+                    <div class="tarjeta-numero">02</div>
+                    <div class="tarjeta-info">
                         <p>JAVASCRIPT</p>
                         <h3>RED ORBIT</h3>
                         <span>HTML · CSS · JavaScript</span>
@@ -77,19 +83,19 @@
                 </article>
             </div>
 
-            <div>PROJECT_DATABASE<br>2 ENTRIES<br>READY_</div>
+            <div class="proyectos-decoracion">PROJECT_DATABASE<br>2 ENTRIES<br>READY_</div>
         </section>
         <!-- SOBRE MÍ -->
-        <section>
-            <div>
+        <section id="sobre-mi" class="pantalla">
+            <div class="seccion-titulo">
                 <span>03 / SOBRE MÍ</span>
                 <h2>PERFIL<br><em>DE USUARIO</em></h2>
             </div>
 
-            <div>
-                <div>
-                    <div><img src="./assets/img/yo.jpg" alt="Yo"></div>
-                    <div>
+            <div class="registro-contorno">
+                <div class="registro-perfil">
+                    <div class="registro-foto"><img src="./assets/img/yo.jpg" alt="Yo"></div>
+                    <div class="registro-resumen">
                         <span>NOMBRE EN CLAVE</span>
                         <strong>GADOVA</strong>
                         <span>ROL</span>
@@ -97,13 +103,13 @@
                     </div>
                 </div>
 
-                <div>
-                    <p>REGISTRO PERSONAL / 001</p>
-                    <h3>Desarrollador<br><em>en formación.</em></h3>
-                    <p>Estudiante de DAM y desarrollador en formación. Este espacio sirve para reunir proyectos,
+                <div class="registro-datos">
+                    <p class="registro-titulo">REGISTRO PERSONAL / 001</p>
+                    <h3 class="registro-antetitulo">Desarrollador<br><em>en formación.</em></h3>
+                    <p class="registro-informacion">Estudiante de DAM y desarrollador en formación. Este espacio sirve para reunir proyectos,
                         experimentos y pequeñas ideas hechas con distintas tecnologías.</p>
 
-                    <div>
+                    <div class="registro-habilidades">
                         <span>JAVA</span>
                         <span>JAVASCRIPT</span>
                         <span>C#</span>
@@ -113,16 +119,16 @@
             </div>
         </section>
         <!-- CONTACTO -->
-        <section>
-            <div>
+        <section id="contacto" class="pantalla">
+            <div class="seccion-titulo">
                 <span>04 / CONTACTO</span>
                 <h2>CANAL<br><em>DE COMUNICACIÓN</em></h2>
             </div>
 
-            <div>
+            <div class="contacto-contorno">
                 <p>¿Tienes un proyecto, una idea o simplemente quieres contactar?</p>
-                <a>GADOVA.MMI@GMAIL.COM</a>
-                <div>
+                <a class="contacto-email" href="mailto:gadova.mmi@gmail.com">GADOVA.MMI@GMAIL.COM</a>
+                <div class="contacto-enlaces">
                     <a href="https://github.com/Gadova">GITHUB</a>
                     <a href="https://www.linkedin.com/in/iván-fraga-prado/">LINKEDIN</a>
                     <a href="">CV</a>
@@ -132,9 +138,9 @@
     </main>
 
     <!-- PIE DE PÁGINA -->
-    <footer>
-        <span>GADOVA // PORTFOLIO PERSONAL</span>
-        <span>00:00:00</span>
+    <footer class="pie-pagina">
+        <span id="pie-pagina-autor">GADOVA // PORTFOLIO PERSONAL</span>
+        <span id="pie-pagina-reloj">00:00:00</span>
     </footer>
 </body>
 </html>
