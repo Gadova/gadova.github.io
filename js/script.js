@@ -139,5 +139,23 @@ window.addEventListener('keydown', evento => {
     cambiarPantalla(direccion);
 });
 
+/* ---------- 2. Funcionamiento del reloj ---------- */
+
+// Recoger el reloj del index
+const reloj = document.querySelector('#pie-pagina-reloj');
+// Instanciar un formato de reloj 24 horas: horas, minutos y segundos (XX:XX:XX)
+const relojFormato = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+function ejecucionReloj() {
+    if (!reloj) return;
+
+    reloj.textContent = relojFormato.format(new Date());
+}
+
+ejecucionReloj();
+setInterval(ejecucionReloj, 1000);
+
+// ------------------------------------------
+// Referencia a 1. Navegación entre pantallas
 // Selecciona la pantalla inicio por defecto
 irAPantalla('inicio');
