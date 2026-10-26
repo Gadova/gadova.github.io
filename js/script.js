@@ -155,6 +155,22 @@ function ejecucionReloj() {
 ejecucionReloj();
 setInterval(ejecucionReloj, 1000);
 
+/* ---------- 3. Efecto parallax en la pantalla inicio ---------- */
+
+const parallax = document.querySelector('.portada-esfera-decoracion');
+
+if (parallax) {
+    window.addEventListener('pointermove', evento => {
+
+        // Calcula el desplazamiento respecto al centro de la ventana.
+        const x = (evento.clientX / window.innerWidth - 0.5) * 20;
+        const y = (evento.clientY / window.innerHeight - 0.5) * 20;
+        
+        parallax.style.transform = `translate(${x}px,${y}px)`;
+
+    });
+}
+
 // ------------------------------------------
 // Referencia a 1. Navegación entre pantallas
 // Selecciona la pantalla inicio por defecto
