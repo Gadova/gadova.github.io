@@ -139,6 +139,9 @@ window.addEventListener('keydown', evento => {
     cambiarPantalla(direccion);
 });
 
+// Selecciona la pantalla inicio por defecto
+irAPantalla('inicio');
+
 /* ---------- 2. Funcionamiento del reloj ---------- */
 
 // Recoger el reloj del index
@@ -170,8 +173,3 @@ if (parallax) {
 
     });
 }
-
-// ------------------------------------------
-// Referencia a 1. Navegación entre pantallas
-// Selecciona la pantalla inicio por defecto
-irAPantalla('inicio');
