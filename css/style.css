@@ -650,6 +650,61 @@ main {
         letter-spacing: .1em;
         border: 1px solid var(--bordes); /* Delimita cada habilidad sin añadir un fondo opaco. */
     }
+
+    /* Solo se muestra la tarjeta seleccionada. */
+    .sobre-mi-tarjeta {
+        display: none;
+    }
+
+    /* La clase activa determina qué tarjeta se ve. */
+    .sobre-mi-tarjeta.activa {
+        display: block;
+    }
+
+
+    /* Organiza las flechas y el contenido en una misma fila. */
+    .sobre-mi-carrusel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    /* Reserva el espacio central para las tarjetas. */
+    .sobre-mi-tarjetas {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Solo se muestra la tarjeta seleccionada. */
+    .sobre-mi-tarjeta {
+        display: none;
+    }
+
+    /* La clase activa determina qué tarjeta se ve. */
+    .sobre-mi-tarjeta.activa {
+        display: block;
+    }
+
+    /* Estilo de las flechas laterales. */
+    .sobre-mi-flecha {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--blanco);
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .sobre-mi-flecha:hover {
+        background: var(--azul-indigo);
+        border-color: var(--azul-cian);
+    }
+
     /*-----------------------------*/
 
     /* CONTACTO */

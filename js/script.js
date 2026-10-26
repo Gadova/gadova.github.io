@@ -173,3 +173,43 @@ if (parallax) {
 
     });
 }
+
+/* ---------- 4. Carrusel de la sección Sobre mí ---------- */
+
+// Tarjetas que forman el carrusel.
+const tarjetasSobreMi = document.querySelectorAll('.sobre-mi-tarjeta');
+
+// Flechas para cambiar de tarjeta.
+const flechasSobreMi = document.querySelectorAll('.sobre-mi-flecha');
+
+// Índice de la tarjeta que se está mostrando.
+let tarjetaSobreMiActual = 0;
+
+// Cambia la tarjeta visible según el índice recibido.
+function mostrarTarjetaSobreMi(indice) {
+
+    // Oculta todas las tarjetas y activa únicamente la seleccionada.
+    tarjetasSobreMi.forEach((tarjeta, i) => {
+        tarjeta.classList.toggle('activa', i === indice);
+    });
+
+    tarjetaSobreMiActual = indice;
+}
+
+// Asigna el comportamiento a las flechas.
+flechasSobreMi.forEach((flecha) => {
+
+    flecha.addEventListener('click', () => {
+
+        // Convierte el atributo en número: -1 o 1.
+        const direccion = Number(flecha.getAttribute('data-direccion'));
+
+        // Calcula la siguiente posición y permite recorrer el carrusel en bucle.
+        const totalTarjetas = tarjetasSobreMi.length;
+        const siguienteIndice =
+            (tarjetaSobreMiActual + direccion + totalTarjetas) % totalTarjetas;
+
+        mostrarTarjetaSobreMi(siguienteIndice);
+    });
+});
+
