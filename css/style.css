@@ -553,10 +553,12 @@ main {
     /* Distribución principal: tarjeta de perfil a la izquierda y datos personales a la derecha. */
     .registro-contorno {
         display: grid;
-        grid-template-columns: 300px minmax(300px, 600px);
+        grid-template-columns: minmax(0, 300px) minmax(0, 560px);
         align-items: center;
-        gap: 60px; /* Separa ambas columnas para que la tarjeta y el texto no queden demasiado juntos. */
+        gap: clamp(20px, 3vw, 60px);
+        min-width: 0;
     }
+
 
     /* TARJETA DE PERFIL */
     /* Marco visual que contiene la imagen y el resumen de información personal. */
@@ -650,6 +652,69 @@ main {
         letter-spacing: .1em;
         border: 1px solid var(--bordes); /* Delimita cada habilidad sin añadir un fondo opaco. */
     }
+
+    /* Solo se muestra la tarjeta seleccionada. */
+    .sobre-mi-tarjeta {
+        display: none;
+    }
+
+    /* La clase activa determina qué tarjeta se ve. */
+    .sobre-mi-tarjeta.activa {
+        display: block;
+    }
+
+    .sobre-mi-carrusel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .sobre-mi-tarjetas {
+        flex: 1 1 0;
+        min-width: 0;
+        width: 0;
+    }
+
+    .sobre-mi-tarjeta {
+        display: none;
+    }
+
+    .sobre-mi-tarjeta.activa {
+        display: block;
+    }
+
+    .sobre-mi-flecha {
+        display: grid;
+        place-items: center;
+        justify-self: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 1px solid var(--bordes);
+        border-radius: 50%;
+        background: transparent;
+        color: var(--blanco);
+        font-family: var(--fuentesLectura);
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .sobre-mi-flecha[data-direccion="-1"]::before {
+        content: "‹";
+    }
+
+    .sobre-mi-flecha[data-direccion="1"]::before {
+        content: "›";
+    }
+
+    .sobre-mi-flecha:hover {
+        background: var(--azul-indigo);
+        border-color: var(--azul-cian);
+    }
+
     /*-----------------------------*/
 
     /* CONTACTO */
@@ -657,10 +722,12 @@ main {
         max-width: 750px;
         margin-top: 10vh; /* Separa el bloque de contacto de la parte superior de la sección. */
     }
+
     /* Texto introductorio que acompaña a los datos de contacto. */
     .contacto-contorno > p {
         max-width: 530px; /* Evita que el párrafo ocupe demasiado ancho y dificulte la lectura. */
         font-size: 20px;
+        font-weight: bold;
         line-height: 1.5; /* Aumenta la separación entre líneas para mejorar la legibilidad. */
         opacity: .8; /* Reduce ligeramente el protagonismo del texto frente al correo. */
     }

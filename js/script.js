@@ -141,3 +141,75 @@ window.addEventListener('keydown', evento => {
 
 // Selecciona la pantalla inicio por defecto
 irAPantalla('inicio');
+
+/* ---------- 2. Funcionamiento del reloj ---------- */
+
+// Recoger el reloj del index
+const reloj = document.querySelector('#pie-pagina-reloj');
+// Instanciar un formato de reloj 24 horas: horas, minutos y segundos (XX:XX:XX)
+const relojFormato = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+function ejecucionReloj() {
+    if (!reloj) return;
+
+    reloj.textContent = relojFormato.format(new Date());
+}
+
+ejecucionReloj();
+setInterval(ejecucionReloj, 1000);
+
+/* ---------- 3. Efecto parallax en la pantalla inicio ---------- */
+
+const parallax = document.querySelector('.portada-esfera-decoracion');
+
+if (parallax) {
+    window.addEventListener('pointermove', evento => {
+
+        // Calcula el desplazamiento respecto al centro de la ventana.
+        const x = (evento.clientX / window.innerWidth - 0.5) * 20;
+        const y = (evento.clientY / window.innerHeight - 0.5) * 20;
+        
+        parallax.style.transform = `translate(${x}px,${y}px)`;
+
+    });
+}
+
+/* ---------- 4. Carrusel de la sección Sobre mí ---------- */
+
+// Tarjetas que forman el carrusel.
+const tarjetasSobreMi = document.querySelectorAll('.sobre-mi-tarjeta');
+
+// Flechas para cambiar de tarjeta.
+const flechasSobreMi = document.querySelectorAll('.sobre-mi-flecha');
+
+// Índice de la tarjeta que se está mostrando.
+let tarjetaSobreMiActual = 0;
+
+// Cambia la tarjeta visible según el índice recibido.
+function mostrarTarjetaSobreMi(indice) {
+
+    // Oculta todas las tarjetas y activa únicamente la seleccionada.
+    tarjetasSobreMi.forEach((tarjeta, i) => {
+        tarjeta.classList.toggle('activa', i === indice);
+    });
+
+    tarjetaSobreMiActual = indice;
+}
+
+// Asigna el comportamiento a las flechas.
+flechasSobreMi.forEach((flecha) => {
+
+    flecha.addEventListener('click', () => {
+
+        // Convierte el atributo en número: -1 o 1.
+        const direccion = Number(flecha.getAttribute('data-direccion'));
+
+        // Calcula la siguiente posición y permite recorrer el carrusel en bucle.
+        const totalTarjetas = tarjetasSobreMi.length;
+        const siguienteIndice =
+            (tarjetaSobreMiActual + direccion + totalTarjetas) % totalTarjetas;
+
+        mostrarTarjetaSobreMi(siguienteIndice);
+    });
+});
+
